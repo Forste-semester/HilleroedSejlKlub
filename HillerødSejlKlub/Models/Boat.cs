@@ -11,7 +11,6 @@ namespace HillerødSejlKlub.Models
     {
 
         #region Instance fields
-        private Dictionary<int, Boat> _boats = new Dictionary<int, Boat>();
         private int _id;
 
         private static int _nextId = 1;
@@ -19,13 +18,13 @@ namespace HillerødSejlKlub.Models
         #endregion
 
         #region Constructors 
-        public Boat(string name, string model, string type, int id, double size, int year, bool maintenance)
+        public Boat(string name, string model, string type, double size, int year, bool maintenance)
         {
+            _nextId++;
             Name = name;
             Type = type;
             Model = model;
-            _id = _nextId++;
-            Id = id;
+            _id = _nextId;
             Size = size;
             Maintenance = maintenance;
 
