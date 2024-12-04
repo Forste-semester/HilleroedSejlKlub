@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HillerødSejlKlub.Models
+namespace HillerødSejlKlub.Data
 {
     public enum TitleType
     {
-        MEMBER, BOARDMEMBER
+        BoardDirector,
+        BoardMember,
+        Secretary,
+        Member
     }
 }
