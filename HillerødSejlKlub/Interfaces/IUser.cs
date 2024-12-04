@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Interfaces
 {
-    public interface IMember
+    public interface IUser
     {
         string Name { get; }
         string Email { get; }

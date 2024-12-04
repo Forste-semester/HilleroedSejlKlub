@@ -9,18 +9,18 @@ namespace HillerødSejlKlub.Data
 {
     public static class MockData
     {
-        private static Dictionary<int, Member> _memberData = new Dictionary<int, Member>()
+        private static Dictionary<int, User> _userData = new Dictionary<int, User>()
         {
-            {1, new Member("Peter", "Peter90@mail.dk", "92929292", TitleType.BoardDirector) },
-            {2, new Member("Rasmus", "Rasmus91@hotmail.com", "78787878", TitleType.BoardMember) },
-            {3, new Member("Chris", "Chris78@gmail.com", "01010101", TitleType.Member) },
-            {4, new Member("Michael", "Michael69@hotmail.com", "69696969", TitleType.Member) },
-            {5, new Member("Hanne", "Hanne24@gmail.com", "45454545", TitleType.Secretary) }
+            {1, new User("Peter", "Peter90@mail.dk", "92929292", TitleType.BoardDirector) },
+            {2, new User("Rasmus", "Rasmus91@hotmail.com", "78787878", TitleType.BoardMember) },
+            {3, new User("Chris", "Chris78@gmail.com", "01010101", TitleType.Member) },
+            {4, new User("Michael", "Michael69@hotmail.com", "69696969", TitleType.Member) },
+            {5, new User("Hanne", "Hanne24@gmail.com", "45454545", TitleType.Secretary) }
         };
 
-        public static Dictionary<int, Member> MemberData
+        public static Dictionary<int, User> UserData
         {
-            get { return _memberData; }
+            get { return _userData; }
         }
     }
 }
