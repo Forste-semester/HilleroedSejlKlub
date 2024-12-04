@@ -13,8 +13,7 @@ namespace HillerødSejlKlub.Models
     {
 
         #region Instance fields
-
-
+          
         public int _id;
 
         public static int _nextId = 1;
@@ -22,8 +21,13 @@ namespace HillerødSejlKlub.Models
         #endregion
 
         #region Constructors 
+
+    
+
         public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year, bool maintenance)
+        
         {
+            
             Name = name;
             BoatType = boatType;
             Model = model;
