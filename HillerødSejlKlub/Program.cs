@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 using HillerødSejlKlub.Models;
 using HillerødSejlKlub.Services;
 using System.Globalization;
@@ -6,7 +7,6 @@ using System.Globalization;
 Console.WriteLine("Hello, World!");
 Console.WriteLine("");
 
-Console.WriteLine("Test");
 
 User user = new User();
 Boat boat = new Boat("hund", "ddx", "sejlbåd", 43,1990,false);
@@ -24,3 +24,5 @@ bookingRepository.GetAll();
 bookingRepository.PrintAllBookings();
 
 bookingRepository.UpdateBookingById(2);
+
+
