@@ -54,7 +54,7 @@ BoatRepository boatRepository = new BoatRepository();
 
 Boat myBoat5 = new Boat("Sejlbåden Hammer II", "Model Yamaha X-100", BoatType.SEJLBAAD, 101, 30.5, 2020, false);
 
-Dictionary<int, Boat> allBoats = BoatRepository.PrintAllBoats();
+Dictionary<int, Boat> allBoats = boatRepository.PrintAllBoats();
 
 Dictionary<int, Boat> allBoatsCollection = BoatCollection.PrintAllBoats(); 
 
@@ -91,7 +91,7 @@ foreach (var boat in allBoatsCollection)
 {
     Console.WriteLine($"--------------------\nID: {boat.Key}\nDetails:\n{boat.Value}\n---------------------");
 }
-Boat foundBoat = BoatRepository.GetBoatByID(3);
+Boat foundBoat = boatRepository.GetBoatByID(3);
 
 if (foundBoat != null)
 {
@@ -110,12 +110,22 @@ foreach (var boat in allBoatsCollection)
 }
 
 
-Console.WriteLine("Nedenfor søger vi efter ID 5 på bådene");
-Boat foundBoat2 = BoatRepository.GetBoatByID(4);
+Console.WriteLine("Nedenfor søger vi efter ID 4 og 5 på bådene");
+Boat foundBoat2 = boatRepository.GetBoatByID(4);
+Boat foundBoat3 = boatRepository.GetBoatByID(5);
 
 if (foundBoat2 != null)
 {
     Console.WriteLine($"Found Boat: {foundBoat2.Name} ({foundBoat2.Model})");
+}
+else
+{
+    Console.WriteLine("Boat not found.");
+}
+
+if (foundBoat3 != null)
+{
+    Console.WriteLine($"Found Boat: {foundBoat3.Name} ({foundBoat3.Model})");
 }
 else
 {

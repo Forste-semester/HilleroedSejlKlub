@@ -10,34 +10,23 @@ namespace HillerødSejlKlub
     public interface IBoatRepository
     {
 
-        BoatType TheBoatType { get; set; }
+        
 
 
-        public static void AddBoat(Boat boat)
-        {
+         void AddBoat(Boat boat)
+        {}
 
-        }
+        
 
-        public static void AddBoatToRepositoryManually()
-        {
-           
-        }
+         void GetBoatByID()
+        {}
 
-        public static void GetBoatByID()
-        {
+        void RemoveBoatByID(int id);
 
-        }
+        string UpdateBoatByID();
 
-        public void RemoveBoatByID(int id);
-
-       public  string UpdateBoatByID();
-
-        public static void PrintAllBoats()
-        {
-
-        }
-
-
+        void PrintAllBoats()
+        {}
 
     }
 }

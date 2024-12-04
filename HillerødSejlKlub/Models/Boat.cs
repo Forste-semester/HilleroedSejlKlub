@@ -35,7 +35,7 @@ namespace HillerødSejlKlub.Models
 
 
             // add boat
-            BoatCollection._boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
+            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
 
 
 

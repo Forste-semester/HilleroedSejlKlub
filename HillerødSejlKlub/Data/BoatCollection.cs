@@ -10,7 +10,9 @@ namespace HillerødSejlKlub.Data
     public class BoatCollection
     {
 
-        public static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>();
+        private static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>();
+
+
 
 
 
@@ -18,6 +20,8 @@ namespace HillerødSejlKlub.Data
         {
             return _boatData;
         }
+
+        public static Dictionary<int, Boat> boatData { get { return _boatData; } }
 
 
     }
