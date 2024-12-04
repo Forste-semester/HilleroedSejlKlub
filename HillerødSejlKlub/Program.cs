@@ -1,4 +1,5 @@
 
+
 ﻿// See https://aka.ms/new-console-template for more information
 
 using HillerødSejlKlub.Models;
@@ -25,5 +26,4 @@ bookingRepository.GetAll();
 bookingRepository.PrintAllBookings();
 
 bookingRepository.UpdateBookingById(2);
-
 
