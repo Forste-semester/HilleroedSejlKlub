@@ -1,12 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-Console.WriteLine("");
+﻿using HillerødSejlKlub;
+using HillerødSejlKlub.Models;
 
-Console.WriteLine("Test");
-
-´¨
-cw
-
-=======
-
-// HEJ
+User user = new User("Mads");
