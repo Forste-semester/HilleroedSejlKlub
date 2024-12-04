@@ -25,15 +25,14 @@ namespace HillerødSejlKlub.Models
             _boat = boat;
             _bookingDay = bookingDay;
             _returnTime = new DateTime(_bookingDay.Year, _bookingDay.Month,_bookingDay.Day, returnHour, 0, 0)  ;
-            
 
         }
 
         public int Id
         {
-            get { return _id; }
+            get 
+            { return _nextId; }
         }
-
 
         public DateOnly BookingDay
         {

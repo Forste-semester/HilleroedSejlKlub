@@ -20,6 +20,7 @@ BookingRepository bookingRepository = new BookingRepository();
 bookingRepository.CreateBooking(booking);
 bookingRepository.LeaveDock(1);
 Console.WriteLine(DateTime.Now);
+bookingRepository.GetAll();
 bookingRepository.PrintAllBookings();
 
 bookingRepository.UpdateBookingById(2);

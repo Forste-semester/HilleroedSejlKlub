@@ -54,6 +54,18 @@ namespace HillerødSejlKlub.Services
         }
 
 
+        public List<Booking> GetAll()
+        {
+            return _bookings.Values.ToList();
+        }
+
+        public void PrintAllBookings()
+        {
+            foreach (Booking booking in _bookings.Values)
+            {
+                Console.WriteLine(booking.ToString());
+            }
+        }
 
         public void LeaveDock(int id)
         {
@@ -64,6 +76,19 @@ namespace HillerødSejlKlub.Services
             }
         }
 
+
+        public List<Booking> ListOfBoatsAtSea()
+        {
+            foreach (var item in _bookings.Values)
+            {
+                if (item.AtSea == true)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            return _bookings.Values.ToList();
+        }
+
         public void ReturnedToDock(int id)
         {
             Booking booking = _bookings[id];
@@ -72,14 +97,6 @@ namespace HillerødSejlKlub.Services
                 booking.AtSea = false;
             }
         }
-        public void PrintAllBookings()
-        {
-            foreach (Booking booking in _bookings.Values)
-            {
-                Console.WriteLine(booking.ToString());
-            }
-        }
-
 
     }
 }
