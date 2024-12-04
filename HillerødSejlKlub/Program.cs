@@ -48,11 +48,12 @@ Boat myBoat = new Boat("Sejlbåden Hammer", "Model Yamaha X-100", BoatType.SEJLB
 Boat myBoat2 = new Boat("Motorbåden Emilie", "Model Mustang X-500", BoatType.MOTORBAAD, 101, 30.5, 2020, false);
 Boat myBoat3 = new Boat("Kajakken Ole", "Model Wavebreaker 3000", BoatType.KAJAK, 101, 30.5, 2023, true);
 Boat myBoat4 = new Boat("Kajakken Frederikke", "Model Wavebreaker 5300", BoatType.KAJAK, 101, 30.5, 2023, true);
+Boat myBoat5 = new Boat("Sejlbåden Hammer II", "Model Yamaha X-100", BoatType.SEJLBAAD, 101, 30.5, 2020, false);
 
 BoatRepository boatRepository = new BoatRepository();
 
 
-Boat myBoat5 = new Boat("Sejlbåden Hammer II", "Model Yamaha X-100", BoatType.SEJLBAAD, 101, 30.5, 2020, false);
+
 
 Dictionary<int, Boat> allBoats = boatRepository.PrintAllBoats();
 
