@@ -10,6 +10,7 @@ namespace HillerødSejlKlub.Models
 {
     public class User : IUser
     {
+
         private static int _nextId = 1;
 
         public User(string name, string email, string phone, TitleType titleType)
@@ -31,5 +32,6 @@ namespace HillerødSejlKlub.Models
         {
             return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}\n";
         }
+
     }
 }

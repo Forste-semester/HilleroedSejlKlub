@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HillerødSejlKlub.Models
 {
    
-        public enum MenuType
+        public enum BoatType
         {
             KANO, JOLLE, KAJAK, SEJLBAAD, ROBAAD, MOTORBAAD
         }    

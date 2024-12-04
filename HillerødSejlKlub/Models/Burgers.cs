@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Models
 {
-    public class Events
+    public enum Burgers
     {
+        CHEESEBURGER, HAMBURGER, BIGMAC
     }
 }

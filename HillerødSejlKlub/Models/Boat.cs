@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HillerødSejlKlub.Data;
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,23 +13,34 @@ namespace HillerødSejlKlub.Models
     {
 
         #region Instance fields
-        private Dictionary<int, Boat> _boats = new Dictionary<int, Boat>();
-        private int _id;
+          
+        public int _id;
 
-        private static int _nextId = 1;
+        public static int _nextId = 1;
 
         #endregion
 
         #region Constructors 
-        public Boat(string name, string model, string type, int id, double size, int year, bool maintenance)
+
+    
+
+        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year, bool maintenance)
+        
         {
+            
             Name = name;
-            Type = type;
+            BoatType = boatType;
             Model = model;
             _id = _nextId++;
-            Id = id;
+            LicensePlate = licenseplate;
+            Year = year;
             Size = size;
             Maintenance = maintenance;
+
+
+            // add boat
+            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
+
 
 
         }
@@ -35,13 +48,16 @@ namespace HillerødSejlKlub.Models
 
         #region Properties
 
+        public BoatType BoatType { get; set; }
+
+
         public string Name { get; set; }
 
         public string Model { get; set; }
 
         public string Type { get; set; }
 
-        public int Id { get; set; }
+        public int LicensePlate { get; set; }
 
         public double Size { get; set; }
 
@@ -52,6 +68,18 @@ namespace HillerødSejlKlub.Models
 
 
 
+
+        #endregion
+
+
+
+        #region Methods
+
+
+        public override string ToString()
+        {
+            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\nMaintenance: {(Maintenance ? "Yes" : "No")}";
+        }
 
         #endregion
 
