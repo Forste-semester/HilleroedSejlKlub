@@ -9,53 +9,42 @@ namespace HillerødSejlKlub.Models
 {
     public class Booking
     {
+        #region Instance fields
         private static int _nextId;
         private int _id;
-        private DateOnly _bookingDay;
+        private DateOnly _bookingDate;
         private DateTime _returnTime;
         private bool _atSea;
-        private User _user;
-        private Boat _boat;
-
-        public Booking(User user, Boat boat, DateOnly bookingDay, int returnHour)
+        #endregion
+        #region Constructor
+        public Booking(User user, Boat boat, DateOnly bookingDate, int returnHour)
         {
             _nextId++;
             _id = _nextId;
-            _user = user;
-            _boat = boat;
-            _bookingDay = bookingDay;
-            _returnTime = new DateTime(_bookingDay.Year, _bookingDay.Month,_bookingDay.Day, returnHour, 0, 0)  ;
+            User = user;
+            Boat = boat;
+            _bookingDate = bookingDate;
+            _returnTime = new DateTime(_bookingDate.Year, _bookingDate.Month,_bookingDate.Day, returnHour, 0, 0)  ;
 
         }
-
+        #endregion
+        #region Properties
         public int Id
-        {
-            get 
-            { return _nextId; }
-        }
+        {get { return _id; }}
 
-        public DateOnly BookingDay
+        public DateOnly BookingDate
         {
-            get { return _bookingDay; }
-            set { _bookingDay = value; }
+            get {return _bookingDate; }
+            set { _bookingDate = value; }
         }
 
         public DateTime ReturnTime
-        {
-            get { return _returnTime ; }
-            set { _returnTime = value ; }
-        }
+        {get;set;}
 
         public bool AtSea
         {
-            get
-            {
-                return _atSea;
-            }
-            set 
-            { 
-                _atSea = value;
-            }
+            get { return _atSea; }
+            set { _atSea = value; }
         }
 
         public string EmergencyStatus
@@ -73,25 +62,20 @@ namespace HillerødSejlKlub.Models
             }
         }
         
-        public User User
-        {
-            get { return _user; }
-        }
+        public User User { get;}
 
-        public Boat Boat
-        {
-            get { return _boat; }
-        }
-
+        public Boat Boat{ get;}
+        #endregion
+        #region Methods
         public string Emergency()
         {
-            return $"EMERGENCY! ...skal rettes til user.Name... has not returned! Send patrols ASAP!";
+            return $"EMERGENCY! {User.Name} has not returned within his/her estimated return time period! Send patrols ASAP!";
         }
 
         public override string ToString()
         {
-            return $"----Booking---- \nID: {_id}\nBooking Day: {_bookingDay}\nReturn Time: {_returnTime}\nAt Sea: {_atSea}\nEmergency Status: {EmergencyStatus}\n{_user.ToString()}\n{_boat.ToString()}";
+            return $"----------------------------------------\n\tBooking Receipt (#{Id})\n----------------------------------------\n\nBooking Day: {BookingDate}\nReturn to dock time: {_returnTime}\nEmergency Status: {EmergencyStatus}\nAt Sea: {_atSea}\n\n----------------------------------------\nPersonal Information\n----------------------------------------\n{User.ToString()}\n\n----------------------------------------\nBoat Information\n----------------------------------------\n{Boat.ToString()}\n\n----------------------------------------\n";
         }
-
+        #endregion
     }
 }

@@ -36,13 +36,6 @@ namespace HillerødSejlKlub.Models
             Year = year;
             Size = size;
             Maintenance = maintenance;
-
-
-            // add boat
-            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
-
-
-
         }
         #endregion
 

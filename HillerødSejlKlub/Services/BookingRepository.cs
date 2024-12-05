@@ -1,4 +1,5 @@
-﻿using HillerødSejlKlub.Models;
+﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,48 +10,57 @@ namespace HillerødSejlKlub.Services
 {
     public class BookingRepository : IBookingRepository
     {
-
+        #region Instance fields
         private Dictionary<int, Booking> _bookings;
-
-
-        public BookingRepository() 
+        #endregion
+        #region Constructor
+        public BookingRepository()
         {
-            _bookings = new Dictionary<int, Booking>();
+            _bookings = new Dictionary<int, Booking>(BookingCollection.BookingData);
         }
-
-
+        #endregion
+        #region CRUD Methods
         public void CreateBooking(Booking booking)
         {
-            _bookings.Add(booking.Id, booking);
+                _bookings.Add(booking.Id, booking);
         }
 
-        public Booking GetBooking(int id)
-        {
-            return _bookings[id];
-        }
-
-        public void RemoveBookingById(int id)
-        {
-            if (_bookings.ContainsKey(id))
-            { 
-            _bookings.Remove(id);
-            }
-        }
-
-        public void UpdateBookingById(int id)
+        public Booking GetBooking(int bookingId)
         {
             try
             {
-                if (!_bookings.ContainsKey(id))
+                if (_bookings.ContainsKey(bookingId))
                 {
-                    throw new Exception($"No booking found with ID {id}.");
+                    return _bookings[bookingId];
                 }
-
+                else
+                {
+                    throw new KeyNotFoundException($"No bookings found with ID:{bookingId}");
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine(ex.Message);
             }
+            return null;
+        }
+
+        public void RemoveBookingById(int bookingId)
+        {
+            if (_bookings.ContainsKey(bookingId))
+            {
+                _bookings.Remove(bookingId);
+            }
+        }
+
+        public Booking UpdateBookingById(int bookingId, DateOnly year, DateOnly month, DateOnly day, DateTime returnHour)
+        {
+            if (_bookings.ContainsKey(bookingId))
+            {
+                _bookings[bookingId].BookingDate = DateOnly.Parse($"{year}/{month}/{day}");
+                _bookings[bookingId].ReturnTime = returnHour;
+            }
+            return null;
         }
 
 
@@ -67,18 +77,11 @@ namespace HillerødSejlKlub.Services
             }
         }
 
-        public void LeaveDock(int id)
-        {
-            Booking booking = _bookings[id];
-            if (_bookings.ContainsKey(id))
-            {
-               booking.AtSea = true;
-            }
-        }
+        #endregion
 
-
-        public List<Booking> ListOfBoatsAtSea()
+        public List<Booking> ListOfBookingsAtSea()
         {
+            Console.WriteLine("=====================================================\n\t\tList of bookings at sea\n=====================================================");
             foreach (var item in _bookings.Values)
             {
                 if (item.AtSea == true)
@@ -86,7 +89,16 @@ namespace HillerødSejlKlub.Services
                     Console.WriteLine(item);
                 }
             }
-            return _bookings.Values.ToList();
+            Console.WriteLine("=====================================================");
+            return null;
+        }
+        public void LeaveDock(int id)
+        {
+            Booking booking = _bookings[id];
+            if (_bookings.ContainsKey(id))
+            {
+                booking.AtSea = true;
+            }
         }
 
         public void ReturnedToDock(int id)
@@ -97,6 +109,5 @@ namespace HillerødSejlKlub.Services
                 booking.AtSea = false;
             }
         }
-
     }
 }

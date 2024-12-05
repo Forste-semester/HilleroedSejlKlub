@@ -9,12 +9,6 @@ namespace HillerødSejlKlub.Models
 {
     public class Event : IEvent
     {
-        private string _title;
-        private string _body;
-        private string _date;
-        private string _time;
-        private string _where;
-        private string _creator; //Creator would be a person object.
 
         public Event(string title, string body, string date, string time, string where, string creator) //Creator would probably not be part of the requirements for the constructor.
         {
