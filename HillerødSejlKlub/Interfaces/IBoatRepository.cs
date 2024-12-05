@@ -23,7 +23,7 @@ namespace HillerødSejlKlub
 
         void RemoveBoatByID(int id);
 
-        string UpdateBoatByID();
+        string UpdateBoatByID(int id, string name, string model, BoatType boattype, int licensePlate, double size, int year, bool maintenance);
 
         void PrintAllBoats()
         {}

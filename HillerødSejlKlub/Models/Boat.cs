@@ -1,4 +1,5 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Services;
 using System;
 
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace HillerødSejlKlub.Models
 
         #region Instance fields
           
-        public int _id;
+        
 
         public static int _nextId = 1;
 
@@ -31,15 +32,14 @@ namespace HillerødSejlKlub.Models
             Name = name;
             BoatType = boatType;
             Model = model;
-            _id = _nextId++;
+            Id = _nextId++;
             LicensePlate = licenseplate;
             Year = year;
             Size = size;
             Maintenance = maintenance;
 
 
-            // add boat
-            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
+      
 
 
 
@@ -50,6 +50,7 @@ namespace HillerødSejlKlub.Models
 
         public BoatType BoatType { get; set; }
 
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -78,7 +79,7 @@ namespace HillerødSejlKlub.Models
 
         public override string ToString()
         {
-            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\nMaintenance: {(Maintenance ? "Yes" : "No")}";
+            return $"ID: {Id}\nName: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\nMaintenance: {(Maintenance ? "Yes" : "No")}";
         }
 
         #endregion

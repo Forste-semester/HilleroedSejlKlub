@@ -75,6 +75,8 @@ namespace HillerødSejlKlub.Services
                 if (user.Name != null) { }
             }
 
+        }
+
         public void RemoveEvent(string title)
         {
             if (!_events.ContainsKey(title))
@@ -85,7 +87,7 @@ namespace HillerødSejlKlub.Services
             throw new NotImplementedException();
         }
 
-        public void
+      
 
         public override string ToString()
         {
