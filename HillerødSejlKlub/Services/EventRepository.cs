@@ -1,111 +1,187 @@
-﻿using HillerødSejlKlub.Interfaces;
+﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HillerødSejlKlub.Services
 {
     public class EventRepository : IEventRepository
     {
-        private Dictionary<string,Event> _events; 
-        private List<User> _usersJoined;
+        private Dictionary<string, Event> _events;        
 
         public EventRepository()
         {
-            _events = new Dictionary<string, Event>();
+            _events = new Dictionary<string, Event>(EventCollection.EventData);
         }
-        public void AddEvent(Event events)
+        public void AddEvent(Event eventToAdd)
         {
-            
-            if (!_events.ContainsKey(events.Title))
+            if (_events.ContainsKey(eventToAdd.Title))
             {
-                _events.Add(events.Title,events);
-                _usersJoined = new List<User>();
+                throw new ArgumentException($"An event with the title '{eventToAdd.Title}' already exists.");
             }
 
-            
+            _events.Add(eventToAdd.Title, eventToAdd);
+
         }
-        public void JoinEvent(string name)
+        public Dictionary<string, Event> GetAllEvents()
         {
-            foreach (var user in _usersJoined) {
-                if (user.Name!=name)
-                {
-                    _usersJoined.Add(user);
-                }
+            if (!_events.Any())
+            {
+                throw new ArgumentException("There are no events.");
             }
-
-            //throw new NotImplementedException();
+            return _events;
         }
 
-        public List<Event> GetAllEvents()
+        public Event GetEventByTitle(string eventTitle)
         {
-            return _events.Values.ToList();
-            throw new NotImplementedException();
+            if (!_events.ContainsKey(eventTitle)) 
+            {
+                throw new ArgumentException("Event not found.");
+            }
+
+            return _events[eventTitle]; 
+
         }
 
-        public Event GetEventByTitle(string title)
+        public void EditEvent(Event eventToEdit, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice)
         {
-            if (!_events.ContainsKey(title))
+            if (string.IsNullOrEmpty(newBody))
             {
-                return _events[title];
+                throw new ArgumentException("Body cannot be empty.");
             }
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(newDate))
+            {
+                throw new ArgumentException("Date cannot be empty.");
+            }
+            if (string.IsNullOrEmpty(newTime))
+            {
+                throw new ArgumentException("Time cannot be empty.");
+            }
+            if (string.IsNullOrEmpty(newLocation))
+            {
+                throw new ArgumentException("Location cannot be empty.");
+            }
+            if (string.IsNullOrEmpty(newCreator))
+            {
+                throw new ArgumentException("Creator cannot be empty.");
+            }
+            if (newPrice < 0)
+            {
+                throw new ArgumentException("Price cannot be negative.");
+            }
+
+            eventToEdit.Body= newBody;
+            eventToEdit.Date = newDate;
+            eventToEdit.Time = newTime;
+            eventToEdit.Location = newLocation;
+            eventToEdit.Creator = newCreator;
+            eventToEdit. Price = newPrice;
         }
 
-        public void PrintAllEvents()
+        public void RemoveEvent(string eventTitle)
         {
-            foreach (var events in _events.Values)
+            if (!_events.ContainsKey(eventTitle))
             {
-                Console.WriteLine(events.ToString());
-                Console.WriteLine();
-            }
-            if (_events.Count < 1)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public void RemoveFromEvent(string name)
-        {
-            foreach (var user in _usersJoined)
-            {
-                if (user.Name != null) { }
+                throw new ArgumentException("Event not found.");
             }
 
-        public void RemoveEvent(string title)
-        {
-            if (!_events.ContainsKey(title))
-            {
-                _events.Remove(title);
-            }
-            else
-            throw new NotImplementedException();
-        }
-
-        public void
-
-        public override string ToString()
-        {
-            if (_events.Count == 0)
-            {
-                return "Event list is empty.";
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Customer Repository Details:");
-            sb.AppendLine($"Total Customers: {_events.Count}");
-
-            foreach (var customer in _events.Values)
-            {
-                sb.AppendLine(customer.ToString());
-            }
-
-            return sb.ToString();
+            _events.Remove(eventTitle);
         }
 
         
+        
+        public void JoinEvent(string eventTitle, User user)
+        {
+            if (!_events.ContainsKey(eventTitle))
+            {
+                throw new ArgumentException("Event not found.");
+            }
+
+            var eventToJoin = _events[eventTitle];
+
+            if (eventToJoin.Participants == null)
+            {
+                eventToJoin.Participants = new List<User>(); 
+            }
+
+            
+            if (eventToJoin.Participants.Any(u => u.Id == user.Id))
+            {
+                throw new ArgumentException("User has already joined the event.");
+            }
+
+            
+            eventToJoin.Participants.Add(user);
+        }
+
+        public void RemoveFromEvent(string eventTitle, User user)
+        {
+            if (!_events.ContainsKey(eventTitle))
+            {
+                throw new ArgumentException("Event not found.");
+            }
+
+            
+            var eventToRemoveFrom = _events[eventTitle];
+
+            var userToRemove = eventToRemoveFrom.Participants.FirstOrDefault(u => u.Id == user.Id);
+
+            if (userToRemove != null)
+            {
+                eventToRemoveFrom.Participants.Remove(userToRemove);
+            }
+            else
+            {
+                throw new ArgumentException("User not found in the event.");
+            }
+
+        }
+
+        public void PrintParticipants(string eventTitle)
+        {
+            if (!_events.ContainsKey(eventTitle))
+            {
+                throw new ArgumentException("Event not found.");
+            }
+
+            var eventToShow = _events[eventTitle];
+            if (eventToShow.Participants == null)
+            {
+                Console.WriteLine("No members are attending this event.");
+            }
+            else
+            {
+                Console.WriteLine($"Members attending {eventTitle}");
+                foreach (var user in eventToShow.Participants)
+                {
+                    Console.WriteLine(user.Id);
+                }
+                Console.WriteLine();
+            }
+
+        }
+        public void PrintAllEvents()
+        {
+            if (!_events.Any())
+            {
+                throw new InvalidOperationException("There are no events to print.");
+            }
+            foreach (var events in _events)
+            {
+                Console.WriteLine(events.Value.ToString());
+            }
+
+        }
+
     }
 }
+
+
+

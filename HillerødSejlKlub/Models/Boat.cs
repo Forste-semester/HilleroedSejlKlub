@@ -24,7 +24,7 @@ namespace HillerødSejlKlub.Models
 
     
 
-        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year, bool maintenance)
+        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year)
         
         {
             
@@ -35,13 +35,12 @@ namespace HillerødSejlKlub.Models
             LicensePlate = licenseplate;
             Year = year;
             Size = size;
-            Maintenance = maintenance;
 
 
             // add boat
             BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
 
-
+            Boatlog = new List<Maintenance>();
 
         }
         #endregion
@@ -62,8 +61,8 @@ namespace HillerødSejlKlub.Models
         public double Size { get; set; }
 
         public int Year { get; set; }
+        public List<Maintenance> Boatlog { get; set; }
 
-        public bool Maintenance { get; set; }
 
 
 
@@ -74,11 +73,31 @@ namespace HillerødSejlKlub.Models
 
 
         #region Methods
-
+        public void AddMaintenance(Maintenance maintenance)
+        {
+            Boatlog.Add(maintenance);
+        }
+        public void PrintBoatLog()
+        {
+            if (Boatlog.Count == 0)
+            {
+                Console.WriteLine("No maintenance records found for this boat.");
+            }
+            else
+            {
+                Console.WriteLine($"Maintenance log for boat: {Name}");
+                Console.WriteLine($"Number of entries: {Boatlog.Count}\n");
+                foreach (var maintenance in Boatlog)
+                {
+                    Console.WriteLine($"Description: {maintenance.Description}\nCost: {maintenance.Cost}kr\nDate: {maintenance.Date}\n");
+                }
+                Console.WriteLine("End of Log.\n");
+            }
+        }
 
         public override string ToString()
         {
-            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\nMaintenance: {(Maintenance ? "Yes" : "No")}";
+            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\n";
         }
 
         #endregion

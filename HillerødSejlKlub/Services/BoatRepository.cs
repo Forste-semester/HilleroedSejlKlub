@@ -1,4 +1,5 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
@@ -53,10 +54,27 @@ namespace HillerødSejlKlub.Services
                 Console.WriteLine($"A boat with ID {boat._id} already exists.");
             }
         }
-
-        public  Dictionary<int, Boat> PrintAllBoats() 
+        public Dictionary<int, Boat> GetAllBoats()
         {
+            if (!_boatDictionary.Any())
+            {
+                throw new ArgumentException("There are no Boats.");
+            }
             return _boatDictionary;
+        }
+
+        public void PrintBoats() 
+        {
+            if (!_boatDictionary.Any())
+            {
+                throw new InvalidOperationException("There are no Boats to print.");
+            }
+            foreach (var boat in _boatDictionary.Values)
+            {
+                
+                    Console.WriteLine(boat.ToString());
+                
+            }
         }
 
         public  Boat GetBoatByID(int id)
@@ -103,6 +121,32 @@ namespace HillerødSejlKlub.Services
         {
             throw new NotImplementedException();
         }
+
+
+
+
+        public void AddMaintenanceToBoat(int boatId, Maintenance maintenance)
+        {
+            Boat boat = GetBoatByID(boatId);
+
+            if (boat != null)
+            {
+                boat.AddMaintenance(maintenance);
+                Console.WriteLine($"Maintenance added to boat with ID {boatId}.");
+            }
+            else
+            {
+                Console.WriteLine($"Boat with ID {boatId} not found.");
+            }
+        }
+
+
+
+
+
+
+
+
         /* public string UpdateBoatByID() // Hjælp, hvordan skal det gøres? Via en constructor metode som modtager direkte nye detaljer?
 {
    throw new NotImplementedException();

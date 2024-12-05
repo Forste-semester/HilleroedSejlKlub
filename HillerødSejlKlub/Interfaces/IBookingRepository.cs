@@ -13,8 +13,8 @@ namespace HillerødSejlKlub
 
 
 
-        public void CreateBooking(Booking booking);
-        public Booking GetBooking(int id);
+       // public void CreateBooking(Booking booking);
+       // public Booking GetBooking(int id);
         public void RemoveBookingById(int id);
         public void UpdateBookingById(int id);
         public void PrintAllBookings();
