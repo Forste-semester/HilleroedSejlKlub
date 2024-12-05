@@ -25,7 +25,7 @@ namespace HillerødSejlKlub.Services
                 _bookings.Add(booking.Id, booking);
         }
 
-        public Booking GetBooking(int bookingId)
+        public Booking GetBookingById(int bookingId)
         {
             try
             {
@@ -35,30 +35,53 @@ namespace HillerødSejlKlub.Services
                 }
                 else
                 {
-                    throw new KeyNotFoundException($"No bookings found with ID:{bookingId}");
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+            catch (KeyNotFoundException ex) 
+            { 
+            Console.WriteLine(ex.Message);
             }
             return null;
         }
 
         public void RemoveBookingById(int bookingId)
         {
-            if (_bookings.ContainsKey(bookingId))
+            try
             {
-                _bookings.Remove(bookingId);
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    _bookings.Remove(bookingId);
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
+            }
+            catch (KeyNotFoundException ex) 
+            { 
+            Console.WriteLine(ex.Message);
             }
         }
 
-        public Booking UpdateBookingById(int bookingId, DateOnly year, DateOnly month, DateOnly day, DateTime returnHour)
+        //den her metode updaterer det nuværende objekt. Du kan opdatere, Year, Month, Day (datoen) også kan du ændre returnHour
+        public Booking UpdateBookingById(int bookingId, int year, int month, int day, int returnHour)
         {
-            if (_bookings.ContainsKey(bookingId))
+            try
             {
-                _bookings[bookingId].BookingDate = DateOnly.Parse($"{year}/{month}/{day}");
-                _bookings[bookingId].ReturnTime = returnHour;
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    _bookings[bookingId].BookingDate = DateOnly.Parse($"{year}/{month}/{day}");
+                    _bookings[bookingId].ReturnTime = new DateTime(_bookings[bookingId].BookingDate.Year, _bookings[bookingId].BookingDate.Month, _bookings[bookingId].BookingDate.Day, returnHour, 0, 0);
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
+            }
+            catch(KeyNotFoundException ex) 
+            {
+                Console.WriteLine(ex.Message);
             }
             return null;
         }
@@ -71,14 +94,16 @@ namespace HillerødSejlKlub.Services
 
         public void PrintAllBookings()
         {
+            Console.WriteLine("=====================================================\n\t\tList of all bookings\n=====================================================");
             foreach (Booking booking in _bookings.Values)
             {
                 Console.WriteLine(booking.ToString());
             }
+            Console.WriteLine("=====================================================");
         }
 
         #endregion
-
+        #region Methods
         public List<Booking> ListOfBookingsAtSea()
         {
             Console.WriteLine("=====================================================\n\t\tList of bookings at sea\n=====================================================");
@@ -92,22 +117,47 @@ namespace HillerødSejlKlub.Services
             Console.WriteLine("=====================================================");
             return null;
         }
-        public void LeaveDock(int id)
+        public void LeaveDock(int bookingId)
         {
-            Booking booking = _bookings[id];
-            if (_bookings.ContainsKey(id))
+            try
             {
-                booking.AtSea = true;
+                Booking booking = _bookings[bookingId];
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    booking.AtSea = true;
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
-        public void ReturnedToDock(int id)
+        public void ReturnedToDock(int bookingId)
         {
-            Booking booking = _bookings[id];
-            if (_bookings.ContainsKey(id))
+            try
             {
-                booking.AtSea = false;
+                Booking booking = _bookings[bookingId];
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    booking.AtSea = false;
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
             }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using HillerødSejlKlub.Services;
+﻿using HillerødSejlKlub.Interfaces;
+using HillerødSejlKlub.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Models
 {
-    public class Booking
+    public class Booking : IBooking
     {
         #region Instance fields
         private static int _nextId;
@@ -39,7 +40,10 @@ namespace HillerødSejlKlub.Models
         }
 
         public DateTime ReturnTime
-        {get;set;}
+        {
+            get { return _returnTime; }
+            set { _returnTime = value; }
+        }
 
         public bool AtSea
         {
@@ -74,7 +78,7 @@ namespace HillerødSejlKlub.Models
 
         public override string ToString()
         {
-            return $"----------------------------------------\n\tBooking Receipt (#{Id})\n----------------------------------------\n\nBooking Day: {BookingDate}\nReturn to dock time: {_returnTime}\nEmergency Status: {EmergencyStatus}\nAt Sea: {_atSea}\n\n----------------------------------------\nPersonal Information\n----------------------------------------\n{User.ToString()}\n\n----------------------------------------\nBoat Information\n----------------------------------------\n{Boat.ToString()}\n\n----------------------------------------\n";
+            return $"----------------------------------------\n\tBooking Receipt (#{Id})\n----------------------------------------\n\nBooking Day: {BookingDate}\nReturn to dock time: {ReturnTime}\nEmergency Status: {EmergencyStatus}\nAt Sea: {_atSea}\n\n----------------------------------------\nPersonal Information\n----------------------------------------\n{User.ToString()}\n\n----------------------------------------\nBoat Information\n----------------------------------------\n{Boat.ToString()}\n\n----------------------------------------\n";
         }
         #endregion
     }

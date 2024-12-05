@@ -34,7 +34,10 @@ namespace HillerødSejlKlub.Data
             {
                 return UserCollection.UserData[userId];
             }
-            return null;
+            else 
+            {
+                throw new Exception($"No users found with ID{userId}");
+            }
         }
         public static Boat Boats(int boatId)
         {
@@ -42,7 +45,10 @@ namespace HillerødSejlKlub.Data
             {
                 return BoatCollection.boatData[boatId];
             }
-            return null;
+            else
+            {
+                throw new Exception($"No boats found with ID{boatId}");
+            }
         }
         #endregion
     }
