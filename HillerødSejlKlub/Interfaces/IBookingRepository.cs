@@ -11,6 +11,8 @@ namespace HillerødSejlKlub
     public interface IBookingRepository
     {
 
+        //
+
         #region #Methods
         void CreateBooking(Booking booking);
         Booking GetBookingById(int id);
