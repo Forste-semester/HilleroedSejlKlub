@@ -12,9 +12,9 @@ namespace HillerødSejlKlub.Interfaces
         
 
         void AddEvent(Event events);
-        Dictionary<string, Event> GetAllEvents();
+        List<Event> GetAllEvents();
         Event GetEventByTitle(string eventTitle);
-        void EditEvent(Event events, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice);
+        void EditEvent(string eventTitle, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice);
         void RemoveEvent(string eventTitle);
         void JoinEvent(string eventTitle, User user);
         void RemoveFromEvent(string eventTitle, User user);

@@ -4,6 +4,8 @@ using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
 using HillerødSejlKlub.Services;
 
+
+# region
 EventRepository eventRepository = new EventRepository();
 UserRepository userRepository = new UserRepository();
 BoatRepository boatRepository = new BoatRepository();
@@ -21,12 +23,6 @@ myBoat.PrintBoatLog();
 myBoat.AddMaintenance(maintenance1);
 
 myBoat.PrintBoatLog();
-
-
-
-
-
-
 
 boatRepository.AddBoat(myBoat);
 boatRepository.PrintBoats();
@@ -51,14 +47,14 @@ eventRepository.PrintParticipants("Test");
 
 eventRepository.PrintAllEvents();
 
-eventRepository.EditEvent(testevent, "edittest", "edit21-12-2024", "edit14:00", "editKlubhuset", "editChris", 5000);
+eventRepository.EditEvent("Test", "edittest", "edit21-12-2024", "edit14:00", "editKlubhuset", "editChris", 5000);
 
 eventRepository.PrintAllEvents();
 
 Console.WriteLine(testevent.ToString());
 Console.WriteLine(eventRepository.GetEventByTitle("Test"));
 
-
+#endregion
 
 
 

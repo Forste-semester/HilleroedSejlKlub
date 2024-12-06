@@ -30,13 +30,13 @@ namespace HillerødSejlKlub.Services
             _events.Add(eventToAdd.Title, eventToAdd);
 
         }
-        public Dictionary<string, Event> GetAllEvents()
+        public List<Event> GetAllEvents()
         {
             if (!_events.Any())
             {
                 throw new ArgumentException("There are no events.");
             }
-            return _events;
+            return _events.Values.ToList();
         }
 
         public Event GetEventByTitle(string eventTitle)
@@ -50,7 +50,7 @@ namespace HillerødSejlKlub.Services
 
         }
 
-        public void EditEvent(Event eventToEdit, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice)
+        public void EditEvent(string title, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice)
         {
             if (string.IsNullOrEmpty(newBody))
             {
@@ -77,12 +77,12 @@ namespace HillerødSejlKlub.Services
                 throw new ArgumentException("Price cannot be negative.");
             }
 
-            eventToEdit.Body= newBody;
-            eventToEdit.Date = newDate;
-            eventToEdit.Time = newTime;
-            eventToEdit.Location = newLocation;
-            eventToEdit.Creator = newCreator;
-            eventToEdit. Price = newPrice;
+            _events[title].Body= newBody;
+            _events[title].Date = newDate;
+            _events[title].Time = newTime;
+            _events[title].Location = newLocation;
+            _events[title].Creator = newCreator;
+            _events[title].Price = newPrice;
         }
 
         public void RemoveEvent(string eventTitle)
