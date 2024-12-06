@@ -11,161 +11,64 @@ namespace HillerødSejlKlub.Services
 {
     public class BoatRepository : IBoatRepository
     {
-        #region Instance fields
-
-
-        private Dictionary<int, Boat> _boatDictionary = new Dictionary<int, Boat>();
-
-
-        #endregion
-
-        #region Constructor
+        private Dictionary<int, Boat> _boatDictionary;
 
         public BoatRepository()
         {
-
-         _boatDictionary = new Dictionary<int, Boat>(BoatCollection.boatData); // Her henter vi fra BoatCollection for at lave repository dictionary
-
+            _boatDictionary = new Dictionary<int, Boat>(BoatCollection.boatData);
         }
-        #endregion
-
-
-
-        #region Properties 
-
-
-
-
-        #endregion
-
-
-
-        #region Methods
 
         public void AddBoat(Boat boat)
         {
-            if (!_boatDictionary.ContainsKey(boat._id))
-            {
-                _boatDictionary.Add(boat._id, boat);
-            }
-            else
-            {
-                Console.WriteLine($"A boat with ID {boat._id} already exists.");
-            }
+            _boatDictionary.Add(boat.Id, boat);
         }
 
-        public  Dictionary<int, Boat> PrintAllBoats() 
+        public Dictionary<int, Boat> GetAllBoats()
         {
             return _boatDictionary;
         }
 
-        public  Boat GetBoatByID(int id)
+        public void GetBoatByID(int id)
         {
-            foreach (var kvp in _boatDictionary) // Kvp (KeyValuePair) har metoder hvorpå man kan get Key eller Value, f.eks. .Key, .Value
+            if (_boatDictionary.TryGetValue(id, out Boat boat))
             {
-                if (kvp.Key == id)
-                {
-
-                    return kvp.Value;
-
-
-                }
-            }
-            return null;
-
-        }
-
-
-        /* Nødvendig? Giver det mening at oprette både en dictionary og list pr automatik?
-        public List<Boat> GetAllBoatsList()
-        {
-            return boatDictionary.Values.ToList(); // Konverter til List med values
-        }
-        */
-
-        public void RemoveBoatByID(int id)
-        {
-          
-            if (_boatDictionary.ContainsKey(id))
-            {
-              
-                _boatDictionary.Remove(id);
-                Console.WriteLine($"Boat with ID {id} has been removed.");
+                Console.WriteLine(boat);
             }
             else
             {
-               
-                Console.WriteLine($"No boat found with ID {id}");
+                Console.WriteLine($"Boat {id} is not found.");
             }
         }
 
-        public string UpdateBoatByID()
+        public void PrintAllBoats()
         {
-            throw new NotImplementedException();
+            foreach (var boat in _boatDictionary.Values)
+            {
+                Console.WriteLine(boat);
+            }
         }
-        /* public string UpdateBoatByID() // Hjælp, hvordan skal det gøres? Via en constructor metode som modtager direkte nye detaljer?
-{
-   throw new NotImplementedException();
-}
 
-public string UpdateBoatByID(string name, string model, string type, int id, double size, int year, bool maintenance)
-{
+        public void RemoveBoatByID(int id)
+        {
+            string message = _boatDictionary[id].ToString();
+            _boatDictionary.Remove(id);
 
+            BoatMaintenanceLog.Save($"{message} was removed from list.\n");
+        }
 
-   foreach (var boat in _boatDictionary)
-   {
-       if (boat.Name == id)
-       {
-           // Opdater detaljer
-           boat.Name = name;
-           boat.Model = model;
-           boat.Type = type;
-           boat.Size = size;
-           boat.Year = year;
-           boat.Maintenance = maintenance;
+        public void UpdateBoatByID(int id, string newName, string newModel, BoatType newBoatType, double newSize, bool newMaintenance)
+        {
+            _boatDictionary.ContainsKey(id);
+            Boat boat = _boatDictionary[id];
+            boat.Name = newName;
+            boat.Model = newModel;
+            boat.BoatType = newBoatType;
+            boat.Size = newSize;
+            boat.Maintenance = newMaintenance;
 
-
-           return $"Boat with ID {id} has been successfully updated.";
-       }
-   }
-
-      // Ingen båd fundet
-      return $"No boat found with ID: {id}.";
-
-      }
-
-
-/*
-
-     public string RemoveBoatByID(int id)
-     {
-
-         foreach (Boat boat in boatList)
-         {
-             if (boat.Id == id)
-             {
-                 boatList.Remove(boat);  
-
-                 return $"{boat} has succesfully been removed";
-
-
-             }
-
-
-         }
-         return $"No boat found with ID: {id}.";
-
-     }
-
-
-
-
-
-
-         */
-
-
-        #endregion
+            string message = $"{boat} got updated info.\n";
+            BoatMaintenanceLog.Save(message);
+        }
     }
 }
     

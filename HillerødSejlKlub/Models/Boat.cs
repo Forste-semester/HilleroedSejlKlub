@@ -1,4 +1,5 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Interfaces;
 using System;
 
 using System.Collections.Generic;
@@ -9,80 +10,32 @@ using System.Xml.Schema;
 
 namespace HillerødSejlKlub.Models
 {
-    public class Boat
+    public class Boat : IBoat
     {
-
-        #region Instance fields
-          
-        public int _id;
-
         public static int _nextId = 1;
 
-        #endregion
-
-        #region Constructors 
-
-    
-
-        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year, bool maintenance)
-        
+        public Boat(string name, string model, BoatType boatType, double size, int year, bool maintenance)
         {
-            
+            Id = _nextId++;
             Name = name;
-            BoatType = boatType;
             Model = model;
-            _id = _nextId++;
-            LicensePlate = licenseplate;
-            Year = year;
+            BoatType = boatType;
             Size = size;
+            Year = year;
             Maintenance = maintenance;
-
-
-            // add boat
-            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
-
-
-
         }
-        #endregion
 
-        #region Properties
-
-        public BoatType BoatType { get; set; }
-
-
+        public int Id { get; }
         public string Name { get; set; }
-
         public string Model { get; set; }
-
-        public string Type { get; set; }
-
-        public int LicensePlate { get; set; }
-
+        public BoatType BoatType { get; set; }
         public double Size { get; set; }
-
         public int Year { get; set; }
-
         public bool Maintenance { get; set; }
-
-
-
-
-
-        #endregion
-
-
-
-        #region Methods
-
 
         public override string ToString()
         {
-            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\nMaintenance: {(Maintenance ? "Yes" : "No")}";
+            return $"ID: {Id}\nName: {Name}\nModel: {Model}\nType: {BoatType}\nSize: {Size} ft\nYear: {Year}\nMaintenance Needed: {(Maintenance ? "Yes" : "No")}\n";
         }
-
-        #endregion
-
-
     }
 }

@@ -24,21 +24,27 @@ namespace HillerødSejlKlub.Services
 
         public Dictionary<int, User> GetAllUsers()
         {
-            foreach (var user in _users.Values)
-            {
-                Console.WriteLine(user);
-            }
-            return null;
+            return _users;
         }
 
         public User GetUserById(int id)
         {
-            return _users[id];
+            if (_users.ContainsKey(id))
+            {
+                return _users[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void PrintAllUsers()
         {
-            GetAllUsers();
+            foreach (var user in _users.Values)
+            {
+                Console.WriteLine(user);
+            }
         }
 
         public void RemoveUserById(int id)
@@ -46,8 +52,10 @@ namespace HillerødSejlKlub.Services
             _users.Remove(id);
         }
 
-        public void UpdateUser(User user, string newName, string newEmail, string newPhone, TitleType newTitleType)
+        public void UpdateUser(int id, string newName, string newEmail, string newPhone, TitleType newTitleType)
         {
+            _users.ContainsKey(id);
+            User user = _users[id];
             user.Name = newName;
             user.Email = newEmail;
             user.Phone = newPhone;

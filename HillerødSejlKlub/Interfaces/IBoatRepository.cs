@@ -1,4 +1,5 @@
-﻿using HillerødSejlKlub.Models;
+﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,11 @@ namespace HillerødSejlKlub
 {
     public interface IBoatRepository
     {
-
-        
-
-
-         void AddBoat(Boat boat)
-        {}
-
-        
-
-         void GetBoatByID()
-        {}
-
+        Dictionary<int, Boat> GetAllBoats();
+        void AddBoat(Boat boat);
+        void GetBoatByID(int id);
         void RemoveBoatByID(int id);
-
-        string UpdateBoatByID();
-
-        void PrintAllBoats()
-        {}
-
+        void UpdateBoatByID(int id, string name, string model, BoatType boatType, double size, bool maintenance);
+        void PrintAllBoats();
     }
 }
