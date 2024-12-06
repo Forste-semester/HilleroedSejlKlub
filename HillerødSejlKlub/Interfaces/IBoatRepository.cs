@@ -16,8 +16,6 @@ namespace HillerødSejlKlub
          void AddBoat(Boat boat)
         {}
 
-        
-
          void GetBoatByID()
         {}
 

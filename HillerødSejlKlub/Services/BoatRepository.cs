@@ -20,16 +20,14 @@ namespace HillerødSejlKlub.Services
 
         #endregion
 
+
         #region Constructor
 
         public BoatRepository()
         {
-
          _boatDictionary = new Dictionary<int, Boat>(BoatCollection.boatData); // Her henter vi fra BoatCollection for at lave repository dictionary
-
         }
         #endregion
-
 
 
         #region Properties 
@@ -38,7 +36,6 @@ namespace HillerødSejlKlub.Services
 
 
         #endregion
-
 
 
         #region Methods
@@ -59,14 +56,14 @@ namespace HillerødSejlKlub.Services
             }
         }
 
-        public  Dictionary<int, Boat> PrintAllBoats() 
+        public  void PrintAllBoats()  // void
         {
             foreach (Boat boats in _boatDictionary.Values)
             {
                 Console.WriteLine(boats.ToString());
                 Console.WriteLine();
             }
-            return _boatDictionary;
+           
         }
 
         public  Boat GetBoatByID(int id)
@@ -74,9 +71,8 @@ namespace HillerødSejlKlub.Services
             
             if (_boatDictionary.ContainsKey(id))
             {
-                var boat = _boatDictionary[id]; 
 
-                return boat;
+                return _boatDictionary[id];
                  
 
             }

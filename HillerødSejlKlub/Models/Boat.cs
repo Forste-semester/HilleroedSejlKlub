@@ -14,16 +14,12 @@ namespace HillerødSejlKlub.Models
     {
 
         #region Instance fields
-          
-        
 
         public static int _nextId = 1;
 
         #endregion
 
         #region Constructors 
-
-    
 
         public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year, bool maintenance)
         
@@ -38,11 +34,6 @@ namespace HillerødSejlKlub.Models
             Size = size;
             Maintenance = maintenance;
 
-
-      
-
-
-
         }
         #endregion
 
@@ -50,7 +41,7 @@ namespace HillerødSejlKlub.Models
 
         public BoatType BoatType { get; set; }
 
-        public int Id { get; set; }
+        public int Id { get; }
 
         public string Name { get; set; }
 
@@ -65,9 +56,6 @@ namespace HillerødSejlKlub.Models
         public int Year { get; set; }
 
         public bool Maintenance { get; set; }
-
-
-
 
 
         #endregion

@@ -7,7 +7,7 @@ using HillerødSejlKlub.Services;
 using System.Globalization;
 
 
-
+#region MadsTest
 
 BoatRepository boatRepository = new BoatRepository();
 
@@ -56,7 +56,7 @@ boatRepository.AddBoat(new Boat("Hammer2", "Yamaha X-100", BoatType.SEJLBAAD, 15
 boatRepository.PrintAllBoats();
 
 
-
+#endregion
 
 
 
