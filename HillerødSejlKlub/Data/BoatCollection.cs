@@ -12,11 +12,11 @@ namespace HillerødSejlKlub.Data
         
         private static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>()
         {
-            {1, new Boat("Hammer", "Yamaha X-100", BoatType.SEJLBAAD, 1514, 35, 2020, false) },
-            {2, new Boat("Emilie", "Mustang X-500", BoatType.MOTORBAAD, 1322, 33, 2020, false) },
-            {3, new Boat("Ole", "Wavebreaker 3000", BoatType.KAJAK, 1013, 15, 2023, false) },
-            {4, new Boat("Frederikke", "Wavebreaker 5300", BoatType.ROBAAD, 4934, 13, 2023, false) },
-            {5, new Boat("Thor", "Yamaha X-100", BoatType.KANO, 9534, 12, 2020, false) }
+            {1, new Boat("Hammer", "Yamaha X-100", BoatType.Sejlbåd, 35, 2020) },
+            {2, new Boat("Emilie", "Mustang X-500", BoatType.Europajolle, 33, 2020) },
+            {3, new Boat("Ole", "Wavebreaker 3000", BoatType.Optimistjolle, 15, 2023) },
+            {4, new Boat("Frederikke", "Wavebreaker 5300", BoatType.Motorbåd, 13, 2023) },
+            {5, new Boat("Thor", "Yamaha X-100", BoatType.Snipejolle, 12, 2020) }
         };
 
         public static Dictionary<int, Boat> boatData { get { return _boatData; } }

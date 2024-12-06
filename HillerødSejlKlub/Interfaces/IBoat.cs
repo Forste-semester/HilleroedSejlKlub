@@ -16,7 +16,6 @@ namespace HillerødSejlKlub.Interfaces
         BoatType BoatType { get; }
         double Size { get; }
         int Year { get; }
-        bool Maintenance { get; }
         string ToString();
 
     }

@@ -26,7 +26,7 @@ namespace HillerødSejlKlub.Models
 
     
 
-        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year)
+        public Boat(string name, string model, BoatType boatType, double size, int year)
 
         
 
@@ -35,11 +35,9 @@ namespace HillerødSejlKlub.Models
             Name = name;
             Model = model;
             BoatType = boatType;
-            Id = _nextId++;
-            LicensePlate = licenseplate;
             Size = size;
             Year = year;
-            
+            List<Maintenance> Boatlog = new List<Maintenance>();
 
         }
 
@@ -52,7 +50,7 @@ namespace HillerødSejlKlub.Models
         public string Model { get; set; }
         public BoatType BoatType { get; set; }
         public double Size { get; set; }
-        public int Year { get; set; }
+        public int Year { get; }
 
         public List<Maintenance> Boatlog { get; set; }
 
@@ -87,9 +85,10 @@ namespace HillerødSejlKlub.Models
 
         public override string ToString()
         {
-            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\n";
+            return $"Name: {Name}\nModel: {Model}\nType: {BoatType}\nId: {Id}\nSize: {Size} ft\nYear: {Year}\n";
 
 
         }
+        #endregion
     }
 }
