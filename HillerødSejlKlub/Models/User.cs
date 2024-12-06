@@ -30,7 +30,8 @@ namespace HillerødSejlKlub.Models
 
         public override string ToString()
         {
-            return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}";
+
+        return $"Name: {Id}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}\n";
         }
 
     }

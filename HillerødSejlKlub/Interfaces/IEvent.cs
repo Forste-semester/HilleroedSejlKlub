@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HillerødSejlKlub.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,8 @@ namespace HillerødSejlKlub.Interfaces
         string Body { get; set; }
         string Date { get; set; }
         string Time { get; set; }
-        string Where { get; set; }
-        string Creator { get; set; }
+        string Location { get; set; }
+        public string Creator { get; set; }
         string ToString();
     }
 }
