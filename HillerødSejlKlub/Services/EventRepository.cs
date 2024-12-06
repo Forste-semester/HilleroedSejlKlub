@@ -127,7 +127,6 @@ namespace HillerødSejlKlub.Services
             {
                 throw new ArgumentException("Event not found.");
             }
-
             
             var eventToRemoveFrom = _events[eventTitle];
 
@@ -143,6 +142,7 @@ namespace HillerødSejlKlub.Services
             }
 
         }
+     
 
         public void PrintParticipants(string eventTitle)
         {

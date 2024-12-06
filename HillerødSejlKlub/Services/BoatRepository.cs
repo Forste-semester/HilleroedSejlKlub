@@ -20,16 +20,14 @@ namespace HillerødSejlKlub.Services
 
         #endregion
 
+
         #region Constructor
 
         public BoatRepository()
         {
-
          _boatDictionary = new Dictionary<int, Boat>(BoatCollection.boatData); // Her henter vi fra BoatCollection for at lave repository dictionary
-
         }
         #endregion
-
 
 
         #region Properties 
@@ -40,20 +38,24 @@ namespace HillerødSejlKlub.Services
         #endregion
 
 
-
         #region Methods
 
         public void AddBoat(Boat boat)
         {
-            if (!_boatDictionary.ContainsKey(boat._id))
+            if (!_boatDictionary.ContainsKey(boat.Id))
             {
-                _boatDictionary.Add(boat._id, boat);
+
+
+                _boatDictionary.Add(boat.Id, boat);
+                Console.WriteLine($"Boat with ID {boat.Id} has been added.");
             }
             else
             {
-                Console.WriteLine($"A boat with ID {boat._id} already exists.");
+                throw new KeyNotFoundException($"A boat with ID {boat.Id} already exists.");
+                
             }
         }
+
         public Dictionary<int, Boat> GetAllBoats()
         {
             if (!_boatDictionary.Any())
@@ -61,6 +63,16 @@ namespace HillerødSejlKlub.Services
                 throw new ArgumentException("There are no Boats.");
             }
             return _boatDictionary;
+
+
+        public  void PrintAllBoats()  // void
+        {
+            foreach (Boat boats in _boatDictionary.Values)
+            {
+                Console.WriteLine(boats.ToString());
+                Console.WriteLine();
+            }
+
         }
 
         public void PrintBoats() 
@@ -79,27 +91,24 @@ namespace HillerødSejlKlub.Services
 
         public  Boat GetBoatByID(int id)
         {
-            foreach (var kvp in _boatDictionary) // Kvp (KeyValuePair) har metoder hvorpå man kan get Key eller Value, f.eks. .Key, .Value
+            
+            if (_boatDictionary.ContainsKey(id))
             {
-                if (kvp.Key == id)
-                {
 
-                    return kvp.Value;
+                return _boatDictionary[id];
+                 
 
-
-                }
             }
-            return null;
+            else
+            {
+                throw new KeyNotFoundException($"No boat found with ID {id}");
+
+            }
+
+            
 
         }
 
-
-        /* Nødvendig? Giver det mening at oprette både en dictionary og list pr automatik?
-        public List<Boat> GetAllBoatsList()
-        {
-            return boatDictionary.Values.ToList(); // Konverter til List med values
-        }
-        */
 
         public void RemoveBoatByID(int id)
         {
@@ -112,10 +121,11 @@ namespace HillerødSejlKlub.Services
             }
             else
             {
+                throw new KeyNotFoundException($"No boat found with ID {id}");
                
-                Console.WriteLine($"No boat found with ID {id}");
             }
         }
+
 
         public string UpdateBoatByID()
         {
@@ -140,76 +150,9 @@ namespace HillerødSejlKlub.Services
             }
         }
 
-
-
-
-
-
-
-
-        /* public string UpdateBoatByID() // Hjælp, hvordan skal det gøres? Via en constructor metode som modtager direkte nye detaljer?
-{
-   throw new NotImplementedException();
 }
 
-public string UpdateBoatByID(string name, string model, string type, int id, double size, int year, bool maintenance)
-{
-
-
-   foreach (var boat in _boatDictionary)
-   {
-       if (boat.Name == id)
-       {
-           // Opdater detaljer
-           boat.Name = name;
-           boat.Model = model;
-           boat.Type = type;
-           boat.Size = size;
-           boat.Year = year;
-           boat.Maintenance = maintenance;
-
-
-           return $"Boat with ID {id} has been successfully updated.";
-       }
-   }
-
-      // Ingen båd fundet
-      return $"No boat found with ID: {id}.";
-
-      }
-
-
-/*
-
-     public string RemoveBoatByID(int id)
-     {
-
-         foreach (Boat boat in boatList)
-         {
-             if (boat.Id == id)
-             {
-                 boatList.Remove(boat);  
-
-                 return $"{boat} has succesfully been removed";
-
-
-             }
-
-
-         }
-         return $"No boat found with ID: {id}.";
-
-     }
 
 
 
-
-
-
-         */
-
-
-        #endregion
-    }
-}
     
