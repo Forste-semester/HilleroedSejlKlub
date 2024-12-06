@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Data
 {
-    public enum TitleType
+    public enum BoatType
     {
-        Board_Director,
-        Board_Member,
-        Secretary,
-        Member
+        Optimistjolle, TERA, FEVA, Laserjolle, Europajolle, Snipejolle, Wayfarer, Lynæs, Sejlbåd, Motorbåd
     }
 }

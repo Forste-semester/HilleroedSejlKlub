@@ -1,4 +1,6 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Interfaces;
+using HillerødSejlKlub.Services;
 using System;
 
 using System.Collections.Generic;
@@ -9,12 +11,11 @@ using System.Xml.Schema;
 
 namespace HillerødSejlKlub.Models
 {
-    public class Boat
+    public class Boat : IBoat
     {
 
+
         #region Instance fields
-          
-        public int _id;
 
         public static int _nextId = 1;
 
@@ -22,50 +23,38 @@ namespace HillerødSejlKlub.Models
 
         #region Constructors 
 
+
     
 
-        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year, bool maintenance)
+        public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year)
+
         
+
         {
-            
+            Id = _nextId++;
             Name = name;
-            BoatType = boatType;
             Model = model;
-            _id = _nextId++;
+            BoatType = boatType;
+            Id = _nextId++;
             LicensePlate = licenseplate;
-            Year = year;
             Size = size;
-            Maintenance = maintenance;
-
-
-            // add boat
-            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
-
-
+            Year = year;
+            
 
         }
+
         #endregion
 
         #region Properties
 
-        public BoatType BoatType { get; set; }
-
-
+        public int Id { get; }
         public string Name { get; set; }
-
         public string Model { get; set; }
-
-        public string Type { get; set; }
-
-        public int LicensePlate { get; set; }
-
+        public BoatType BoatType { get; set; }
         public double Size { get; set; }
-
         public int Year { get; set; }
 
-        public bool Maintenance { get; set; }
-
-
+        public List<Maintenance> Boatlog { get; set; }
 
 
 
@@ -74,15 +63,33 @@ namespace HillerødSejlKlub.Models
 
 
         #region Methods
-
+        public void AddMaintenance(Maintenance maintenance)
+        {
+            Boatlog.Add(maintenance);
+        }
+        public void PrintBoatLog()
+        {
+            if (Boatlog.Count == 0)
+            {
+                Console.WriteLine("No maintenance records found for this boat.");
+            }
+            else
+            {
+                Console.WriteLine($"Maintenance log for boat: {Name}");
+                Console.WriteLine($"Number of entries: {Boatlog.Count}\n");
+                foreach (var maintenance in Boatlog)
+                {
+                    Console.WriteLine($"Description: {maintenance.Description}\nCost: {maintenance.Cost}kr\nDate: {maintenance.Date}\n");
+                }
+                Console.WriteLine("End of Log.\n");
+            }
+        }
 
         public override string ToString()
         {
-            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\nMaintenance: {(Maintenance ? "Yes" : "No")}";
+            return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\n";
+
+
         }
-
-        #endregion
-
-
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Data
 {
-    public static class MockData
+    public static class UserCollection
     {
         private static Dictionary<int, User> _userData = new Dictionary<int, User>()
         {

@@ -12,7 +12,7 @@ namespace HillerødSejlKlub
     {
         Dictionary<int, User> GetAllUsers();
         void CreateUser(User user);
-        void UpdateUser(User user, string name, string email, string phone, TitleType titleType);
+        void UpdateUser(int id, string name, string email, string phone, TitleType titleType);
         void RemoveUserById(int id);
         User GetUserById(int id);
         void PrintAllUsers();

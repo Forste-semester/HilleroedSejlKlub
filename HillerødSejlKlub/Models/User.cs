@@ -10,7 +10,6 @@ namespace HillerødSejlKlub.Models
 {
     public class User : IUser
     {
-
         private static int _nextId = 1;
 
         public User(string name, string email, string phone, TitleType titleType)
@@ -28,10 +27,24 @@ namespace HillerødSejlKlub.Models
         public string Phone { get; set; }
         public TitleType TitleType { get; set; }
 
+
         public override string ToString()
         {
-            return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}\n";
-        }
 
+            if (TitleType == TitleType.Board_Director)
+            {
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Director\nID: {Id}\n";
+            }
+
+
+            if (TitleType == TitleType.Board_Member)
+            {
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Member\nID: {Id}\n";
+            }
+            else
+            {
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}\n";
+            }
+        }
     }
 }
