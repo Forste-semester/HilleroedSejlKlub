@@ -25,8 +25,8 @@ namespace HillerødSejlKlub.Models
             User = user;
             Boat = boat;
             _bookingDate = bookingDate;
+            _atSea = false;
             _returnTime = new DateTime(_bookingDate.Year, _bookingDate.Month,_bookingDate.Day, returnHour, 0, 0)  ;
-
         }
         #endregion
         #region Properties
