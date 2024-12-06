@@ -14,7 +14,7 @@ namespace HillerødSejlKlub.Services
 
         public UserRepository()
         {
-            _users = new Dictionary<int, User>(MockData.UserData);
+            _users = new Dictionary<int, User>(UserCollection.UserData);
         }
 
         public void CreateUser(User user)

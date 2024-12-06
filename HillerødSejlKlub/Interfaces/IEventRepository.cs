@@ -9,15 +9,16 @@ namespace HillerødSejlKlub.Interfaces
 {
     public interface IEventRepository
     {
-        List<Event> GetAllEvents();
+        
 
         void AddEvent(Event events);
-        void JoinEvent(string name);
-
-        Event GetEventByTitle(string title);
-
-        void RemoveEvent(string title);
-
+        List<Event> GetAllEvents();
+        Event GetEventByTitle(string eventTitle);
+        void EditEvent(string eventTitle, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice);
+        void RemoveEvent(string eventTitle);
+        void JoinEvent(string eventTitle, User user);
+        void RemoveFromEvent(string eventTitle, User user);
+        void PrintParticipants(string eventTitle);
         void PrintAllEvents();
     }
 }

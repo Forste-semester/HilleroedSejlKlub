@@ -1,4 +1,5 @@
-﻿using HillerødSejlKlub.Models;
+﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,48 +10,80 @@ namespace HillerødSejlKlub.Services
 {
     public class BookingRepository : IBookingRepository
     {
-
+        #region Instance fields
         private Dictionary<int, Booking> _bookings;
-
-
-        public BookingRepository() 
+        #endregion
+        #region Constructor
+        public BookingRepository()
         {
-            _bookings = new Dictionary<int, Booking>();
+            _bookings = new Dictionary<int, Booking>(BookingCollection.BookingData);
         }
-
-
+        #endregion
+        #region CRUD Methods
         public void CreateBooking(Booking booking)
         {
-            _bookings.Add(booking.Id, booking);
+                _bookings.Add(booking.Id, booking);
         }
 
-        public Booking GetBooking(int id)
-        {
-            return _bookings[id];
-        }
-
-        public void RemoveBookingById(int id)
-        {
-            if (_bookings.ContainsKey(id))
-            { 
-            _bookings.Remove(id);
-            }
-        }
-
-        public void UpdateBookingById(int id)
+        public Booking GetBookingById(int bookingId)
         {
             try
             {
-                if (!_bookings.ContainsKey(id))
+                if (_bookings.ContainsKey(bookingId))
                 {
-                    throw new Exception($"No booking found with ID {id}.");
+                    return _bookings[bookingId];
                 }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
+            }
+            catch (KeyNotFoundException ex) 
+            { 
+            Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
 
-            }
-            catch (Exception ex)
+        public void RemoveBookingById(int bookingId)
+        {
+            try
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    _bookings.Remove(bookingId);
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
             }
+            catch (KeyNotFoundException ex) 
+            { 
+            Console.WriteLine(ex.Message);
+            }
+        }
+
+        //den her metode updaterer det nuværende objekt. Du kan opdatere, Year, Month, Day (datoen) også kan du ændre returnHour
+        public Booking UpdateBookingById(int bookingId, int year, int month, int day, int returnHour)
+        {
+            try
+            {
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    _bookings[bookingId].BookingDate = DateOnly.Parse($"{year}/{month}/{day}");
+                    _bookings[bookingId].ReturnTime = new DateTime(_bookings[bookingId].BookingDate.Year, _bookings[bookingId].BookingDate.Month, _bookings[bookingId].BookingDate.Day, returnHour, 0, 0);
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
+            }
+            catch(KeyNotFoundException ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
 
 
@@ -61,24 +94,19 @@ namespace HillerødSejlKlub.Services
 
         public void PrintAllBookings()
         {
+            Console.WriteLine("=====================================================\n\t\tList of all bookings\n=====================================================");
             foreach (Booking booking in _bookings.Values)
             {
                 Console.WriteLine(booking.ToString());
             }
+            Console.WriteLine("=====================================================");
         }
 
-        public void LeaveDock(int id)
+        #endregion
+        #region Methods
+        public List<Booking> ListOfBookingsAtSea()
         {
-            Booking booking = _bookings[id];
-            if (_bookings.ContainsKey(id))
-            {
-               booking.AtSea = true;
-            }
-        }
-
-
-        public List<Booking> ListOfBoatsAtSea()
-        {
+            Console.WriteLine("=====================================================\n\t\tList of bookings at sea\n=====================================================");
             foreach (var item in _bookings.Values)
             {
                 if (item.AtSea == true)
@@ -86,17 +114,50 @@ namespace HillerødSejlKlub.Services
                     Console.WriteLine(item);
                 }
             }
-            return _bookings.Values.ToList();
+            Console.WriteLine("=====================================================");
+            return null;
         }
-
-        public void ReturnedToDock(int id)
+        public void LeaveDock(int bookingId)
         {
-            Booking booking = _bookings[id];
-            if (_bookings.ContainsKey(id))
+            try
             {
-                booking.AtSea = false;
+                Booking booking = _bookings[bookingId];
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    booking.AtSea = true;
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
+        public void ReturnedToDock(int bookingId)
+        {
+            try
+            {
+                Booking booking = _bookings[bookingId];
+                if (_bookings.ContainsKey(bookingId))
+                {
+                    booking.AtSea = false;
+                }
+                else
+                {
+                    throw new KeyNotFoundException($"#Error: No bookings with ID: {bookingId}");
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+        #endregion
     }
 }

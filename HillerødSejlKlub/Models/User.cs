@@ -30,10 +30,12 @@ namespace HillerødSejlKlub.Models
 
         public override string ToString()
         {
+
             if (TitleType == TitleType.Board_Director)
             {
                 return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Director\nID: {Id}\n";
             }
+
 
             if (TitleType == TitleType.Board_Member)
             {
