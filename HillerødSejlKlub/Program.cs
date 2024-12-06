@@ -95,20 +95,21 @@ Console.WriteLine("Added 1 below again, now has ID of 6  -----------");
 
 boatRepository.AddBoat(new Boat("Hammer", "Yamaha X-100", BoatType.SEJLBAAD, 1514, 35, 2020, false));
 
-Console.WriteLine("");
-Console.WriteLine("Print again:");
-boatRepository.PrintAllBoats();
-
-boatRepository.AddBoat(new Boat("Hammer2", "Yamaha X-100", BoatType.SEJLBAAD, 1514, 35, 2020, false));
-
-boatRepository.PrintAllBoats();
-
-
-Console.WriteLine(testevent.ToString());
-Console.WriteLine(eventRepository.GetEventByTitle("Test"));
-
 #endregion
 
+#region BookingRepository Testing
+
+BookingRepository bookingRepository = new BookingRepository();
+bookingRepository.PrintAllBookings();
+
+bookingRepository.LeaveDock(1);
+bookingRepository.UpdateBookingById(6,2024,12,4,15);
+bookingRepository.RemoveBookingById(4);
+bookingRepository.LeaveDock(3);
+Console.WriteLine(bookingRepository.GetBookingById(6));
+Console.WriteLine(bookingRepository.GetAll());
 
 
-
+bookingRepository.ReturnedToDock(1);
+bookingRepository.PrintAllBookings();
+#endregion

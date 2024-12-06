@@ -36,12 +36,7 @@ namespace HillerødSejlKlub.Models
             LicensePlate = licenseplate;
             Year = year;
             Size = size;
-
-            // add boat
-            BoatCollection.boatData.Add(_id, this);  // this referer til Boat objektet, det er her vi sender data videre til BoatCollection
-
-            Boatlog = new List<Maintenance>();
-
+            Maintenance = maintenance;
 
         }
         #endregion

@@ -127,8 +127,10 @@ namespace HillerødSejlKlub.Services
             {
                 throw new ArgumentException("Event not found.");
             }
+
             
             var eventToRemoveFrom = _events[eventTitle];
+
 
             var userToRemove = eventToRemoveFrom.Participants.FirstOrDefault(u => u.Id == user.Id);
 
@@ -141,8 +143,6 @@ namespace HillerødSejlKlub.Services
                 throw new ArgumentException("User not found in the event.");
             }
 
-        }
-     
 
         public void PrintParticipants(string eventTitle)
         {

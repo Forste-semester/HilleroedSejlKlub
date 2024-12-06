@@ -22,6 +22,6 @@ namespace HillerødSejlKlub.Data
         public static Dictionary<int, Boat> boatData { get { return _boatData; } }
 
        
-    
-    }
+       }
 }
+
