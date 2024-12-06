@@ -5,6 +5,7 @@ using HillerødSejlKlub.Models;
 using HillerødSejlKlub.Services;
 
 
+
 #region KristianTest
 
 EventRepository eventRepository = new EventRepository();
@@ -113,3 +114,4 @@ Console.WriteLine(bookingRepository.GetAll());
 bookingRepository.ReturnedToDock(1);
 bookingRepository.PrintAllBookings();
 #endregion
+

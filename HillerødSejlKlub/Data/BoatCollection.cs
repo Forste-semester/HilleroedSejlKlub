@@ -9,7 +9,7 @@ namespace HillerødSejlKlub.Data
 {
     public class BoatCollection
     {
-
+        
         private static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>()
         {
             {1, new Boat("Hammer", "Yamaha X-100", BoatType.SEJLBAAD, 1514, 35, 2020, false) },
@@ -23,5 +23,6 @@ namespace HillerødSejlKlub.Data
 
        
        }
+
 }
 

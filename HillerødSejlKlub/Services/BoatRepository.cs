@@ -12,6 +12,7 @@ namespace HillerødSejlKlub.Services
 {
     public class BoatRepository : IBoatRepository
     {
+
         #region Instance fields
 
 
@@ -75,6 +76,7 @@ namespace HillerødSejlKlub.Services
 
         }
 
+
         public void PrintBoats() 
         {
             if (!_boatDictionary.Any())
@@ -128,9 +130,23 @@ namespace HillerødSejlKlub.Services
 
 
         public string UpdateBoatByID()
+
         {
-            throw new NotImplementedException();
+            _boatDictionary.ContainsKey(id);
+            Boat boat = _boatDictionary[id];
+            boat.Name = newName;
+            boat.Model = newModel;
+            boat.BoatType = newBoatType;
+            boat.Size = newSize;
+            boat.Maintenance = newMaintenance;
+
+            string message = $"{boat} got updated info.\n";
+            BoatMaintenanceLog.Save(message);
         }
+
+    }
+
+
 
 
 
@@ -151,6 +167,7 @@ namespace HillerødSejlKlub.Services
         }
 
 }
+
 
 
 

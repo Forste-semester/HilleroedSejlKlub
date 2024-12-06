@@ -1,4 +1,5 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Services;
 using System;
 
@@ -10,8 +11,9 @@ using System.Xml.Schema;
 
 namespace HillerødSejlKlub.Models
 {
-    public class Boat
+    public class Boat : IBoat
     {
+
 
         #region Instance fields
 
@@ -27,37 +29,31 @@ namespace HillerødSejlKlub.Models
         public Boat(string name, string model, BoatType boatType, int licenseplate, double size, int year)
 
         
+
         {
-            
+            Id = _nextId++;
             Name = name;
-            BoatType = boatType;
             Model = model;
+            BoatType = boatType;
             Id = _nextId++;
             LicensePlate = licenseplate;
-            Year = year;
             Size = size;
-            Maintenance = maintenance;
+            Year = year;
+            
 
         }
+
         #endregion
 
         #region Properties
 
-        public BoatType BoatType { get; set; }
-
         public int Id { get; }
-
         public string Name { get; set; }
-
         public string Model { get; set; }
-
-        public string Type { get; set; }
-
-        public int LicensePlate { get; set; }
-
+        public BoatType BoatType { get; set; }
         public double Size { get; set; }
-
         public int Year { get; set; }
+
         public List<Maintenance> Boatlog { get; set; }
 
 
@@ -93,10 +89,7 @@ namespace HillerødSejlKlub.Models
         {
             return $"Name: {Name}\nModel: {Model}\nType: {Type}\nId: {LicensePlate}\nSize: {Size} ft\nYear: {Year}\n";
 
+
         }
-
-        #endregion
-
-
     }
 }
