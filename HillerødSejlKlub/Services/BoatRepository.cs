@@ -56,6 +56,15 @@ namespace HillerødSejlKlub.Services
             }
         }
 
+        public Dictionary<int, Boat> GetAllBoats()
+        {
+            if (!_boatDictionary.Any())
+            {
+                throw new ArgumentException("There are no Boats.");
+            }
+            return _boatDictionary;
+
+
         public  void PrintAllBoats()  // void
         {
             foreach (Boat boats in _boatDictionary.Values)
@@ -63,7 +72,21 @@ namespace HillerødSejlKlub.Services
                 Console.WriteLine(boats.ToString());
                 Console.WriteLine();
             }
-           
+
+        }
+
+        public void PrintBoats() 
+        {
+            if (!_boatDictionary.Any())
+            {
+                throw new InvalidOperationException("There are no Boats to print.");
+            }
+            foreach (var boat in _boatDictionary.Values)
+            {
+                
+                    Console.WriteLine(boat.ToString());
+                
+            }
         }
 
         public  Boat GetBoatByID(int id)
@@ -104,52 +127,32 @@ namespace HillerødSejlKlub.Services
         }
 
 
-        public string UpdateBoatByID(int id, string name, string model, BoatType boattype, int licensePlate, double size, int year, bool maintenance)
+        public string UpdateBoatByID()
         {
-
-
-
-            if (_boatDictionary.ContainsKey(id))
-            {
-
-                var boat = _boatDictionary[id];
-
-                string oldName = boat.Name;
-                string oldModel = boat.Model;
-                string oldType = boat.Type;
-                int oldLicensePlate = boat.LicensePlate;
-                double oldSize = boat.Size;
-                int oldYear = boat.Year;
-                bool oldMaintenance = boat.Maintenance;
-
-                boat.Name = name;
-                boat.Model = model;
-                boat.Type = boattype.ToString();
-                boat.LicensePlate = licensePlate;
-                boat.Size = size;
-                boat.Year = year;
-                boat.Maintenance = maintenance;
-
-                string updateMessage = $"Boat with ID {id} has been successfully updated with the following details:" +
-                            $"\nName: {oldName} -> {boat.Name}" +
-                            $"\nModel: {oldModel} -> {boat.Model}" +
-                            $"\nType: {oldType} -> {boat.Type}" +
-                            $"\nLicense Plate: {oldLicensePlate} -> {boat.LicensePlate}" +
-                            $"\nSize: {oldSize} -> {boat.Size}" +
-                            $"\nYear: {oldYear} -> {boat.Year}" +
-                            $"\nMaintenance: {(oldMaintenance ? "Yes" : "No")} -> {(boat.Maintenance ? "Yes" : "No")}\n";
-
-                return boat + updateMessage;
-            }
-
-
-            throw new KeyNotFoundException($"No boat found with ID {id}");
+            throw new NotImplementedException();
         }
 
-       
 
 
-        #endregion
-    }
+
+        public void AddMaintenanceToBoat(int boatId, Maintenance maintenance)
+        {
+            Boat boat = GetBoatByID(boatId);
+
+            if (boat != null)
+            {
+                boat.AddMaintenance(maintenance);
+                Console.WriteLine($"Maintenance added to boat with ID {boatId}.");
+            }
+            else
+            {
+                Console.WriteLine($"Boat with ID {boatId} not found.");
+            }
+        }
+
 }
+
+
+
+
     
