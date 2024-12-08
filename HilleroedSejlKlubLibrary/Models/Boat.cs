@@ -28,8 +28,6 @@ namespace HillerødSejlKlub.Models
 
         public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber)
 
-        
-
         {
             Id = _nextId++;
             Name = name;
@@ -39,6 +37,13 @@ namespace HillerødSejlKlub.Models
             Year = year;
             SailNumber = sailNumber;
             List<Maintenance> Boatlog = new List<Maintenance>();
+
+        }
+
+        public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, Engine engine) : this(name, model, boatType, size, year, sailNumber)
+
+        {
+            Engine = engine;
 
         }
 
@@ -53,6 +58,8 @@ namespace HillerødSejlKlub.Models
         public BoatType BoatType { get; set; }
         public double Size { get; set; }
         public int Year { get; }
+
+        public Engine Engine { get; set; }
 
         public List<Maintenance> Boatlog { get; set; }
 
@@ -87,10 +94,23 @@ namespace HillerødSejlKlub.Models
 
         public override string ToString()
         {
-            return $"Name: {Name}\nModel: {Model}\nType: {BoatType}\nId: {Id}\nSize: {Size} ft\nYear: {Year}\n";
+
+            string engineDetails;
+            if (Engine != null)
+            {
+                engineDetails = Engine.ToString();
+            }
+            else
+            {
+                engineDetails = "No engine installed.";
+            }
+            return $"Name: {Name}\nModel: {Model}\nType: {BoatType}\nId: {Id}\nSize: {Size} ft\nYear: {Year}\nEngine: {engineDetails}";
 
 
         }
+
+      
+
         #endregion
     }
 }
