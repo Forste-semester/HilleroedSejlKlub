@@ -28,19 +28,23 @@ namespace HillerødSejlKlub.Services
 
         public void createBlog(Blog blog)
         {
-            if (!_blogs.Keys.Contains(blog.Title))
+            if (!_blogs.Keys.Contains(blog.Id))
             {
-                _blogs.Add(blog.Title, blog);
+                _blogs.Add(blog.Id, blog);
             }
-            throw new ArgumentException($"This Title alredy {blog.Title}exist");
+            else
+            {
+            throw new ArgumentException($"This Title alredy {blog.Id}exist");
+
+            }
 
         }
 
 
-        // er Titlen på blog = id ???
-        public Blog GetBlogById(string id)
+        
+        public Blog GetBlogById(string id )
         {
-            if (!_blogs.Keys.Contains(id))
+            if (_blogs.ContainsKey(id))
             {
                 return _blogs[id];
             }
@@ -54,7 +58,12 @@ namespace HillerødSejlKlub.Services
 
         public void DeleteBlogById(string id)
         {
-            if (!_blogs.Keys.Contains(id))
+            if (string.IsNullOrEmpty(id)) 
+            {  
+                throw new ArgumentNullException(nameof(id), "This felt cannot be empty..."); 
+            }
+           
+            if (_blogs.ContainsKey(id))
             {
                 _blogs.Remove(id);
             }
@@ -66,15 +75,18 @@ namespace HillerødSejlKlub.Services
 
         }
 
-        public void UpdateBlogById(string id, Blog updatedBlog)
+        public void UpdateBlogById(string id, string NewId, string NewDescription, DateTime Newsdate)
         {
-            if (!_blogs.Keys.Contains(id))
+            _blogs.ContainsKey(id);
+            Blog blog = _blogs[id];
+            blog.Id = NewId;
+            blog.Description = NewDescription;
+            blog.Date= Newsdate;
+
+            if (id != NewId)
             {
-                _blogs[id] = updatedBlog;
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Blog with this Id {id} is not found ");
+                _blogs.Remove(id);
+                _blogs.Add(NewId, blog);
 
             }
         }
@@ -85,11 +97,13 @@ namespace HillerødSejlKlub.Services
 
             if (_blogs == null)
             {
-                Console.WriteLine("No Blogs is found");
+                Console.WriteLine("No Blogs are found");
             }
             else foreach (Blog blog in _blogs.Values)
                 {
-                    Console.WriteLine();
+                    //Console.WriteLine(_blogs.Values.ToString()); 
+                    
+                    Console.WriteLine($"Id: {blog.Id}, Description: {blog.Description}, Date: {blog.Date} ");
                 }
         }
     }
