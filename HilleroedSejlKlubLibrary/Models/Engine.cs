@@ -29,8 +29,8 @@ namespace HillerødSejlKlub.Models
                 }
                     else
                 {
-                    string fuelTypeString = FuelType.ToString(); // Convert enum to string
-                    return char.ToUpper(fuelTypeString[0]) + fuelTypeString.Substring(1).ToLower();
+                    string fuelTypeString = FuelType.ToString(); 
+                    return char.ToUpper(fuelTypeString[0]) + fuelTypeString.Substring(1).ToLower(); 
                 }
 
               
