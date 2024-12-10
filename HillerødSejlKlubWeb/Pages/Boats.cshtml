@@ -25,8 +25,8 @@
 
 
       
-<div class="container px-4">
-   <div class="row">
+<div class="container boat-container">
+   <div class="row boat-row-wrapper">
 
       @{
        int boatCount = 0;
@@ -38,12 +38,12 @@
 
            if (boatCount > 0 && boatCount % 1 == 0)
            {
-               @:</div><div class="row">
+               @:</div><div class="row boat-row-wrapper">
 
                 
            }
            <div class=" col-lg card mb-5 boat-card">
-                <div class="row">
+                <div class="row boat-row-body">
                    <div class="col-lg boat-background">
                      <div class="boat-image" style="background-image: url(@boat.Value.ImagePath);"></div>
 

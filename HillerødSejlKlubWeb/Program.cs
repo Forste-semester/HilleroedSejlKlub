@@ -18,7 +18,7 @@ var app = builder.Build();
 
 // Lav en ny båd
 var boatCollection = app.Services.GetRequiredService<BoatRepository>();
-boatCollection.AddBoat(new Boat("Thor", "Yamaha X-200", BoatType.Motorbåd, 20, 2021, "BT1234", new DieselEngine("Bladt Diesel X-200", 40, FuelType.DIESEL), "/images/motorbaad.jpg"));
+boatCollection.AddBoat(new Boat("Testbåd", "Yamaha X-200", BoatType.Motorbåd, 20, 2021, "BT1234", new DieselEngine("Bladt Diesel X-200", 40, FuelType.DIESEL), "/images/motorbaad.jpg"));
 
 
 // Configure the HTTP request pipeline.

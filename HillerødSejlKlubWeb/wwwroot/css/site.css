@@ -58,7 +58,9 @@ body {
         padding-bottom: 2rem;
     }
 
-
+.boat-row-wrapper:nth-child(even) .boat-row-body {
+    flex-flow: row-reverse;
+}
 
 
 
