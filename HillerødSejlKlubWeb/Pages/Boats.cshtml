@@ -1,4 +1,217 @@
 ﻿@page
+@using HilleroedSejlKlubLibrary.Models
 @model HillerødSejlKlubWeb.Pages.BoatsModel
 @{
 }
+
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Alle både</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Sejlbåde</a>
+  </li>
+
+    <li class="nav-item" role="presentation">
+    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Motorbåde</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="simple-tab-3" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Jolle</a>
+  </li>
+</ul>
+<div class="tab-content pt-5" id="tab-content">
+  <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+
+
+      
+<div class="container px-4">
+   <div class="row">
+
+      @{
+       int boatCount = 0;
+       }
+
+        @foreach (var boat in Model.Boats)
+        {
+
+
+           if (boatCount > 0 && boatCount % 1 == 0)
+           {
+               @:</div><div class="row">
+
+                
+           }
+           <div class=" col-lg card mb-5 boat-card">
+                <div class="row">
+                   <div class="col-lg boat-background">
+                     <div class="boat-image" style="background-image: url(@boat.Value.ImagePath);"></div>
+
+
+                </div>
+                <div class="col-lg p-5">
+                <div class="card-body px-6 overflow-custom">
+
+                <div class="card-body">
+                <h3 class="card-title card-header-custom text-uppercase">@boat.Value.Name</h3>
+                <p class="card-text border-header fw-normal fs-6 pb-3">@boat.Value.Model</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque eleifend dolor ut laoreet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus pretium risus vel aliquam pharetra. Sed non imperdiet turpis, id pharetra orci. </p>
+                </div>
+                  <p class="card-title">
+                     <strong>Detaljer:</strong>
+                    <br /> 
+                    </p>
+
+                    <div class="table-wrapper">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Model</th>
+                            <th scope="col">Længde</th>
+                            <th scope="col">Årstal</th>
+                            <th scope="col">Sejlnummer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td>@boat.Value.BoatType</td>
+                            <td>@boat.Value.Size meter</td>
+                            <td>@boat.Value.Year</td>
+                            <td>@boat.Value.SailNumber</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+                <p class="card-title">
+                     <strong>Eventuel motor:</strong>
+                    <br /> 
+                    </p>
+
+               
+                    
+                   
+                                       @if (boat.Value.Engine != null)
+                                            {
+                                         @switch (boat.Value.Engine)
+                                              {
+                                            case GasEngine gasEngine:
+                                            <div class="table-wrapper">
+                                             <table class="table">
+                                             <tbody>
+                                            <thead>
+                                                <tr>
+                                                   <th scope="col">Model</th>
+                                                   <th scope="col">Brændstof</th>
+                                                   <th scope="col">Kapacitet(L)</th>
+                                                   <th scope="col">Cylindere</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                              <td>@boat.Value.Engine.Name</td>
+                                              <td>@boat.Value.Engine.FormattedFuelType</td>
+                                              <td>@gasEngine.TankCapacity</td>
+                                              <td>@gasEngine.Cylinders</td>
+
+                                            </tr>
+                                            </tbody>
+                                            </table>
+                                            </div>
+                                            break;
+
+                                             case DieselEngine dieselEngine:
+                                              <div class="table-wrapper">
+                                             <table class="table">
+                                             <tbody>
+                                            <thead>
+                                                <tr>
+                                                   <th scope="col">Model</th>
+                                                   <th scope="col">Brændstof</th>
+                                                   <th scope="col">Kapacitet(L)</th>
+                                                
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                              <td>@boat.Value.Engine.Name</td>
+                                              <td>@boat.Value.Engine.FormattedFuelType</td>
+                                              <td>@dieselEngine.TankCapacity</td>
+
+                                         
+
+                                            </tr>
+
+                                             </tbody>
+                                            </table>
+                                            </div>
+                                            break;
+
+                                             case ElectricEngine electricEngine:
+                                              <div class="table-wrapper">
+                                             <table class="table">
+                                             <tbody>
+                                            <thead>
+                                                <tr>
+                                                   <th scope="col">Model</th>
+                                                   <th scope="col">Brændstof</th>
+                                                   <th scope="col">Kapacitet(kWh)</th>
+                                                 
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                              <td>@boat.Value.Engine.Name</td>
+                                              <td>@boat.Value.Engine.FormattedFuelType</td>
+                                              <td>@electricEngine.BatteryCapacity</td>
+                                            
+                                             
+
+                                            </tr>
+
+                                               </tbody>
+                                            </table>
+                                            </div>
+                                            break;
+                                              }
+                                            }
+
+                                            else
+                                            {
+                                                       <p class="">Ingen motor på båden.</p>
+ 
+                                            }
+
+                            
+                       
+                           
+                       </div>
+                   </div>
+                 
+             </div>
+
+           </div>
+         
+            boatCount++;
+
+           
+        }
+   </div>
+
+</div>
+
+  </div>
+
+      <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">Tab 2 selected</div>
+
+  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">Tab 3 selected</div>
+
+  
+
+  <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">Tab 4 selected</div>
+
+
+
+
+
+</div>
+
