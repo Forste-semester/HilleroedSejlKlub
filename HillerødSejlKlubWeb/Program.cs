@@ -5,11 +5,13 @@ using HilleroedSejlKlubLibrary.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<BookingRepository>();
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<BoatRepository>();
+
 
 builder.Logging.ClearProviders(); // Optional: clears default providers
 builder.Logging.AddConsole();    // Logs to the console

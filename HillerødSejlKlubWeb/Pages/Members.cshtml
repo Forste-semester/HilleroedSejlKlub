@@ -1,4 +1,21 @@
 ﻿@page
+@using HillerødSejlKlub.Models
 @model HillerødSejlKlubWeb.Pages.MembersModel
 @{
 }
+
+<br />
+<h2>List of Members</h2>
+
+<table>
+    <thead>
+        
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model.UserList.Values)
+        {
+
+        }
+    </tbody>
+</table>
