@@ -1,4 +1,71 @@
 ﻿@page
 @model HillerødSejlKlubWeb.Pages.EventModel
-@{
+
+<h2>Upcoming Events</h2>
+
+<a href="@Url.Page("/AddEvent")" class="btn btn-primary mb-3">Add New Event</a>
+
+@if (Model.Events != null && Model.Events.Any())
+{
+    <ul>
+        @foreach (var eventItem in Model.Events)
+        {
+            <li>
+                <strong>@eventItem.Title</strong><br />
+                @eventItem.Body <br />
+                Location: @eventItem.Location <br />
+                Created by: @eventItem.Creator <br />
+                Price: @eventItem.Price <br />
+
+                @if (eventItem.Day > 0 && eventItem.Month > 0 && eventItem.Year > 0)
+                {
+                    <span>Date: @eventItem.Year-@eventItem.Month.ToString("D2")-@eventItem.Day.ToString("D2")</span>
+                    <br />
+                }
+                else
+                {
+                    <span>Date: Not Set</span>
+                    <br />
+                }
+
+                Time: @eventItem.Time
+                <br />
+
+                <!-- Join Event Form for each event -->
+                <form method="post" asp-page-handler="JoinEvent">
+                    <input type="hidden" name="SelectedEventTitle" value="@eventItem.Title" />  <!-- Hidden field for event title -->
+                    <select name="userId" class="form-control">
+                        @foreach (var user in Model.Users)
+                        {
+                            <option value="@user.Id">@user.Name</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn btn-success mt-2">Join Event</button>
+                </form>
+
+                <!-- Delete button for each event -->
+                <form method="post" asp-page-handler="DeleteEvent" asp-route-title="@eventItem.Title">
+                    <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No events available at the moment.</p>
+}
+
+<!-- Display success or error messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
 }

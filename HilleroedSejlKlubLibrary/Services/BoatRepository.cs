@@ -1,13 +1,15 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
+using HillerødSejlKlub.Data;
 using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
+using HilleroedSejlKlubLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HillerødSejlKlub.Services
 {
     public class BoatRepository : IBoatRepository
@@ -27,6 +29,14 @@ namespace HillerødSejlKlub.Services
         public BoatRepository()
         {
             _boatDictionary = new Dictionary<int, Boat>(BoatCollection.boatData); // Her henter vi fra BoatCollection for at lave repository dictionary
+
+            
+            foreach (var maintenance in MaintenanceCollection.MaintenanceData)
+            {
+                
+                var boat = _boatDictionary.Values.FirstOrDefault(b => b.Name == maintenance.BoatName);
+
+            }
         }
         #endregion
 
@@ -57,7 +67,7 @@ namespace HillerødSejlKlub.Services
             }
         }
 
-        public Dictionary<int, Boat> GetAllBoats()
+        public Dictionary<int, Boat> GetAll()
         {
             if (!_boatDictionary.Any())
             {
@@ -145,11 +155,6 @@ namespace HillerødSejlKlub.Services
             BoatMaintenanceLog.Save(message);
         }
 
-    
-
-
-
-
 
 
         public void AddMaintenanceToBoat(int boatId, Maintenance maintenance)
@@ -166,6 +171,7 @@ namespace HillerødSejlKlub.Services
                 Console.WriteLine($"Boat with ID {boatId} not found.");
             }
         }
+
         #endregion
 
     }
@@ -174,4 +180,3 @@ namespace HillerødSejlKlub.Services
 
 
 
-    

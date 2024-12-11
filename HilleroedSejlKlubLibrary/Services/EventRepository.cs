@@ -14,21 +14,39 @@ namespace HillerødSejlKlub.Services
 {
     public class EventRepository : IEventRepository
     {
-        private Dictionary<string, Event> _events;        
+        private Dictionary<string, Event> _events = EventCollection.EventData;        
 
         public EventRepository()
         {
-            _events = new Dictionary<string, Event>(EventCollection.EventData);
+            //_events = new Dictionary<string, Event>(EventCollection.EventData);
         }
-        public void AddEvent(Event eventToAdd)
+        public void AddEvent(string title, string body, int day, int month, int year, string time, string location, string creator, double price)
         {
-            if (_events.ContainsKey(eventToAdd.Title))
+        // Ensure the event title is not already taken
+        if (_events.ContainsKey(title))
             {
-                throw new ArgumentException($"An event with the title '{eventToAdd.Title}' already exists.");
+            throw new ArgumentException($"An event with the title '{title}' already exists.");
             }
 
-            _events.Add(eventToAdd.Title, eventToAdd);
+                    // Create a new event using the parameters from the form
+                    var newEvent = new Event
+                    {
+                    Title = title,
+                    Body = body,
+                    Day = day,
+                    Month = month,
+                    Year = year,
+                    Time = time,
+                    Location = location,
+                    Creator = creator,
+                    Price = price
+                    };
 
+            // Log the new event being added
+            Console.WriteLine($"Adding new event: {newEvent.Title}");
+
+            // Add the new event to the repository
+            _events.Add(title, newEvent);
         }
         public List<Event> GetAllEvents()
         {
@@ -50,15 +68,15 @@ namespace HillerødSejlKlub.Services
 
         }
 
-        public void EditEvent(string title, string newBody, string newDate, string newTime, string newLocation, string newCreator, double newPrice)
+        public void EditEvent(string title, string newBody, int day, int month, int year, string newTime, string newLocation, string newCreator, double newPrice)
         {
             if (string.IsNullOrEmpty(newBody))
             {
                 throw new ArgumentException("Body cannot be empty.");
             }
-            if (string.IsNullOrEmpty(newDate))
+            if (day <= 0 || month <= 0 || year <= 0)
             {
-                throw new ArgumentException("Date cannot be empty.");
+                throw new ArgumentException("Invalid date.");
             }
             if (string.IsNullOrEmpty(newTime))
             {
@@ -78,7 +96,9 @@ namespace HillerødSejlKlub.Services
             }
 
             _events[title].Body= newBody;
-            _events[title].Date = newDate;
+            _events[title].Day = day;
+            _events[title].Month = month;
+            _events[title].Year = year;
             _events[title].Time = newTime;
             _events[title].Location = newLocation;
             _events[title].Creator = newCreator;

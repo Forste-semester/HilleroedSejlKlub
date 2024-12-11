@@ -11,10 +11,13 @@ namespace HillerødSejlKlub.Interfaces
     {
         string Title { get; set;  }
         string Body { get; set; }
-        string Date { get; set; }
+        int Day { get; set; }
+        int Month { get; set; }
+        int Year { get; set; }
         string Time { get; set; }
         string Location { get; set; }
         public string Creator { get; set; }
+        public double Price { get; set; }
         string ToString();
     }
 }
