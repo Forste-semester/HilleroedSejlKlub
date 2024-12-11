@@ -17,13 +17,6 @@ builder.Logging.ClearProviders(); // Optional: clears default providers
 builder.Logging.AddConsole();    // Logs to the console
 builder.Logging.AddDebug();      // Logs to Visual Studio Debug output
 
-
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-
         // Register EventRepository as a scoped service
         builder.Services.AddScoped<EventRepository>();
         builder.Services.AddScoped<UserRepository>();
@@ -44,5 +37,3 @@ public class Program
         app.MapRazorPages();
 
         app.Run();
-    }
-}

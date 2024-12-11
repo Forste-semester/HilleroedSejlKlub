@@ -9,24 +9,14 @@ using System.Threading.Tasks;
 namespace HillerødSejlKlub.Interfaces
 {
     public interface IBlogRepository
-
-
-    /*
-    + CreateBlog()
-    + GetBlogByID()
-    + RemoveBlogByID()
-    + UpdateBlogByID()
-    + PrintAllBookings()
-    */
     {
+        #region Methods
         void createBlog(Blog blog);
         Blog GetBlogById(string id);
         void DeleteBlogById(string id);
-
         void UpdateBlogById(string id, Blog newBlog);
-
-        void PrintAllBlogs(); 
-        
+        void PrintAllBlogs();
+        #endregion
     }
 }
 

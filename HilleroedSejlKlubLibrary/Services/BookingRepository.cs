@@ -25,7 +25,6 @@ namespace HillerødSejlKlub.Services
         {
                 _bookings.Add(booking.Id, booking);
         }
-
         public Booking GetBookingById(int bookingId)
         {
             try

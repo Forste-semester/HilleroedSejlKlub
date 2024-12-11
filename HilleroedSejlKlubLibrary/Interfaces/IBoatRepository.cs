@@ -10,13 +10,13 @@ namespace HillerødSejlKlub
 {
     public interface IBoatRepository
     {
-
+        #region Methods
         Dictionary<int, Boat> GetAll();
         void AddBoat(Boat boat);
         Boat GetBoatByID(int id);
         void RemoveBoatByID(int id);
         void UpdateBoatByID(int id, string newName, string newModel, BoatType newBoatType, double newSize);
         void PrintAllBoats();
-
+        #endregion
     }
 }

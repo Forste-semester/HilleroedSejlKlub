@@ -12,19 +12,12 @@ namespace HillerødSejlKlub.Models
 {
     public class Boat : IBoat
     {
-
-
         #region Instance fields
 
         public static int _nextId = 1;
 
         #endregion
-
         #region Constructors 
-
-
-
-
         public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, string imagePath = "/images/billede-paa-vej.jpg")
 
         {
@@ -51,7 +44,6 @@ namespace HillerødSejlKlub.Models
 
 
         #endregion
-
         #region Properties
 
 
@@ -72,9 +64,6 @@ namespace HillerødSejlKlub.Models
         public List<Maintenance> Boatlog { get; set; }
 
         #endregion
-
-
-
         #region Methods
         public void AddMaintenance(Maintenance maintenance)
         {

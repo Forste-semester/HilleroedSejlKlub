@@ -2,9 +2,6 @@
 {
     public enum FuelType
     {
-
-
-        Benzin, El, Diesel
-
+        BENZIN, EL, DIESEL
     }
 }

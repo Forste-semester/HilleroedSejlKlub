@@ -9,8 +9,8 @@ namespace HilleroedSejlKlubLibrary.Interfaces
 {
     public interface IEngine
     {
-
+        #region Methods
         public string ToString();
-        
+        #endregion
     }
 }
