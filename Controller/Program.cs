@@ -5,24 +5,18 @@ using HilleroedSejlKlubLibrary.Models;
 
 
 
-Engine diesel = new DieselEngine("Bladt Diesel", 24);
+BoatRepository boatRepository = new BoatRepository();
+List<Boat> sailBoats = boatRepository.FilterBoat(BoatType.Sejlbåd);
 
-Engine elMotor = new ElectricEngine("Ultra Minn Kota Endura", 34);
+List<Boat> motorBoats = boatRepository.FilterBoat(BoatType.Europajolle);
 
-Engine benzinMotor = new GasEngine("Mercruiser", 20, 8);
+foreach (var boat in sailBoats)
+{
+    Console.WriteLine(boat.ToString());
+}
+foreach (var boat in motorBoats)
+{
+    Console.WriteLine(boat.ToString());
+}
 
-Boat Myboat = new Boat("Hammer", "Yamaha X-100", BoatType.Sejlbåd, 35, 2020, "DY2461", diesel);
-
-Boat Myboat2 = new Boat("Hammer", "Yamaha X-100", BoatType.Sejlbåd, 35, 2020, "DY2461");
-
-
-
-
-string boat = Myboat.ToString();
-
-
-string boat2 = Myboat2.ToString();
-
-Console.WriteLine($"{boat}");
-
-Console.WriteLine($"{boat2}");
+BoatRepository.

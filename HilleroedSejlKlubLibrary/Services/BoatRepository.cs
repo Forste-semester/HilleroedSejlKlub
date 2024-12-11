@@ -1,4 +1,6 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
+using HillerødSejlKlub.Data;
 using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
 using System;
@@ -7,7 +9,6 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HillerødSejlKlub.Services
 {
     public class BoatRepository : IBoatRepository
@@ -145,9 +146,10 @@ namespace HillerødSejlKlub.Services
             BoatMaintenanceLog.Save(message);
         }
 
-    
 
 
+
+ 
 
 
 
@@ -174,4 +176,3 @@ namespace HillerødSejlKlub.Services
 
 
 
-    
