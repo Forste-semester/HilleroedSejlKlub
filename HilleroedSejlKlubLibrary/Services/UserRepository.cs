@@ -1,10 +1,5 @@
 ﻿using HillerødSejlKlub.Data;
 using HillerødSejlKlub.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Services
 {
@@ -26,6 +21,7 @@ namespace HillerødSejlKlub.Services
         {
             return _users;
         }
+
 
         public User GetUserById(int id)
         {

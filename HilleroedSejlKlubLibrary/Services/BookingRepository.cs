@@ -3,6 +3,7 @@ using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -84,14 +85,14 @@ namespace HillerødSejlKlub.Services
             {
                 Console.WriteLine(ex.Message);
             }
-            return null;
+            return _bookings[bookingId];
         }
 
-
-        public List<Booking> GetAll()
+        public Dictionary<int, Booking> GetAll()
         {
-            return _bookings.Values.ToList();
+            return _bookings;
         }
+
 
         public void PrintAllBookings()
         {
@@ -139,6 +140,7 @@ namespace HillerødSejlKlub.Services
 
         }
 
+
         public void ReturnedToDock(int bookingId)
         {
             try
@@ -159,6 +161,8 @@ namespace HillerødSejlKlub.Services
             }
 
         }
+
+      
         #endregion
     }
 }

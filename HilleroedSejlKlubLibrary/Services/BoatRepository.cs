@@ -1,4 +1,6 @@
 ﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
+using HillerødSejlKlub.Data;
 using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
 using HilleroedSejlKlubLibrary.Data;
@@ -8,7 +10,6 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HillerødSejlKlub.Services
 {
     public class BoatRepository : IBoatRepository
@@ -66,7 +67,7 @@ namespace HillerødSejlKlub.Services
             }
         }
 
-        public Dictionary<int, Boat> GetAllBoats()
+        public Dictionary<int, Boat> GetAll()
         {
             if (!_boatDictionary.Any())
             {
@@ -154,8 +155,23 @@ namespace HillerødSejlKlub.Services
             BoatMaintenanceLog.Save(message);
         }
 
-    
-        
+
+
+        public void AddMaintenanceToBoat(int boatId, Maintenance maintenance)
+        {
+            Boat boat = GetBoatByID(boatId);
+
+            if (boat != null)
+            {
+                boat.AddMaintenance(maintenance);
+                Console.WriteLine($"Maintenance added to boat with ID {boatId}.");
+            }
+            else
+            {
+                Console.WriteLine($"Boat with ID {boatId} not found.");
+            }
+        }
+
         #endregion
 
     }
@@ -164,4 +180,3 @@ namespace HillerødSejlKlub.Services
 
 
 
-    

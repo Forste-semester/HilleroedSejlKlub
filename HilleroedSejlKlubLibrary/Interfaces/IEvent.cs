@@ -17,6 +17,7 @@ namespace HillerødSejlKlub.Interfaces
         string Time { get; set; }
         string Location { get; set; }
         public string Creator { get; set; }
+        public double Price { get; set; }
         string ToString();
     }
 }

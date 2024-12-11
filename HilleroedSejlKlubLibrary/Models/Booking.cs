@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HillerødSejlKlub.Models
 {
     public class Booking : IBooking
@@ -26,18 +25,18 @@ namespace HillerødSejlKlub.Models
             Boat = boat;
             _bookingDate = bookingDate;
             _atSea = false;
-            _returnTime = new DateTime(_bookingDate.Year, _bookingDate.Month,_bookingDate.Day, returnHour, 0, 0)  ;
+            _returnTime = new DateTime(_bookingDate.Year, _bookingDate.Month, _bookingDate.Day, returnHour, 0, 0);
             Location = location;
 
         }
         #endregion
         #region Properties
         public int Id
-        {get { return _id; }}
+        { get { return _id; } }
 
         public DateOnly BookingDate
         {
-            get {return _bookingDate; }
+            get { return _bookingDate; }
             set { _bookingDate = value; }
         }
 
@@ -71,15 +70,15 @@ namespace HillerødSejlKlub.Models
                 }
             }
         }
-        
-        public User User { get;}
 
-        public Boat Boat{ get;}
+        public User User { get; }
+
+        public Boat Boat { get; }
         #endregion
         #region Methods
         public string Emergency()
         {
-            return $"EMERGENCY! {User.Name} has not returned within his/her estimated return time period! Send patrols ASAP!";
+            return $"EMERGENCY! {User.Name} has not returned within his/her estimated return time! Send patrols ASAP!";
         }
 
         public override string ToString()

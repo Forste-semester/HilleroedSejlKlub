@@ -1,4 +1,4 @@
-﻿using HillerødSejlKlub.Models;
+using HillerødSejlKlub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ namespace HillerødSejlKlub
         void CreateBooking(Booking booking);
         Booking GetBookingById(int id);
         void RemoveBookingById(int id);
-        Booking UpdateBookingById(int bookingId, string location, int year, int month, int day, int returnHour);
-        List<Booking> GetAll();
+        Booking UpdateBookingById(int bookingId,string location, int year, int month, int day, int returnHour);
+        Dictionary<int, Booking> GetAll();
         void PrintAllBookings();
         #endregion
 

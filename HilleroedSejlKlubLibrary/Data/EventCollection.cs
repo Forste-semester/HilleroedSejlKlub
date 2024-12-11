@@ -7,7 +7,7 @@ using HillerødSejlKlub.Models;
 
 namespace HillerødSejlKlub.Data
 {
-    public class EventCollection
+    public static class EventCollection
     {
         private static Dictionary<string, Event> _eventData = new Dictionary<string, Event>()
         {

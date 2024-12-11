@@ -1,5 +1,6 @@
-﻿using HillerødSejlKlub.Models;
+using HillerødSejlKlub.Models;
 using HilleroedSejlKlubLibrary;
+using HilleroedSejlKlubLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,19 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Data
 {
-    public class BoatCollection
+    public static class BoatCollection
     {
-        
+
         private static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>()
         {
-            {1, new Boat("Hammer", "Yamaha X-100", BoatType.Sejlbåd, 35, 2020, "DY2461") },
-            {2, new Boat("Emilie", "Mustang X-500", BoatType.Europajolle, 33, 2020,"YZ2682") },
-            {3, new Boat("Ole", "Wavebreaker 3000", BoatType.Optimistjolle, 15, 2023, "OD5127") },
-            {4, new Boat("Frederikke", "Wavebreaker 5300", BoatType.Motorbåd, 13, 2023, "OP2841") },
-            {5, new Boat("Thor", "Yamaha X-100", BoatType.Snipejolle, 12, 2020, "BY1627") }
+            {1, new Boat("Hammer", "Yamaha X-100", BoatType.Sejlbåd, 15, 2020, "DY2461", new GasEngine("Mercruiser", 20, 8, FuelType.BENZIN), "/images/sejlbaad.jpg") },
+            {2, new Boat("Emilie", "Mustang X-500", BoatType.Europajolle, 3.4, 2020,"YZ2682", "/images/europajolle.jpg") },
+            {3, new Boat("Ole", "Wavebreaker 3000", BoatType.Optimistjolle, 2.8, 2023, "OD5127", new ElectricEngine("Ultra Minn Kota Endura", 34, FuelType.EL), "/images/optimistjolle.jpg") },
+            {4, new Boat("Frederikke", "Wavebreaker 5300", BoatType.Motorbåd, 4.9, 2023, "OP2841", new DieselEngine("Bladt Diesel X-300", 30, FuelType.DIESEL), "/images/motorbaad.jpg") },
+            {5, new Boat("Thor", "Yamaha X-100", BoatType.Snipejolle, 4.1, 2020, "BY1627") }
         };
 
         public static Dictionary<int, Boat> boatData { get { return _boatData; } }
-
-       
     }
 
 }
