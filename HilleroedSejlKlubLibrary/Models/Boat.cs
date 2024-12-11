@@ -38,7 +38,7 @@ namespace HillerødSejlKlub.Models
             Size = size;
             Year = year;
             SailNumber = sailNumber;
-            List<Maintenance> Boatlog = new List<Maintenance>();
+            Boatlog = new List<Maintenance>();
 
         }
 
@@ -56,8 +56,6 @@ namespace HillerødSejlKlub.Models
 
         public List<Maintenance> Boatlog { get; set; }
 
-
-
         #endregion
 
 
@@ -65,8 +63,10 @@ namespace HillerødSejlKlub.Models
         #region Methods
         public void AddMaintenance(Maintenance maintenance)
         {
+
             Boatlog.Add(maintenance);
         }
+
         public void PrintBoatLog()
         {
             if (Boatlog.Count == 0)

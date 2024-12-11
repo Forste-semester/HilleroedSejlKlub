@@ -1,0 +1,58 @@
+﻿@page
+@model HillerødSejlKlubWeb.Pages.AddEventModel
+
+<h3>Create New Event</h3>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="NewEvent.Title" class="control-label"></label>
+        <input asp-for="NewEvent.Title" class="form-control" required />
+        <span asp-validation-for="NewEvent.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewEvent.Body" class="control-label"></label>
+        <textarea asp-for="NewEvent.Body" class="form-control" required></textarea>
+        <span asp-validation-for="NewEvent.Body" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewEvent.Location" class="control-label"></label>
+        <input asp-for="NewEvent.Location" class="form-control" required />
+        <span asp-validation-for="NewEvent.Location" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="NewEvent.Creator" class="control-label"></label>
+        <input asp-for="NewEvent.Creator" class="form-control" required />
+        <span asp-validation-for="NewEvent.Creator" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewEvent.Price" class="control-label"></label>
+        <input asp-for="NewEvent.Price" class="form-control" required step="any" min="0" />
+        <span asp-validation-for="NewEvent.Price" class="text-danger"></span>
+    </div>
+
+    <!-- Manual Date Input -->
+    <div class="form-group">
+        <label class="control-label">Date</label><br />
+        <input asp-for="NewEvent.Day" class="form-control-inline" type="number" placeholder="Day" min="1" max="31" required />
+        <input asp-for="NewEvent.Month" class="form-control-inline" type="number" placeholder="Month" min="1" max="12" required />
+        <input asp-for="NewEvent.Year" class="form-control-inline" type="number" placeholder="Year" min="1900" max="2100" required />
+        <span asp-validation-for="NewEvent.Day" class="text-danger"></span>
+        <span asp-validation-for="NewEvent.Month" class="text-danger"></span>
+        <span asp-validation-for="NewEvent.Year" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewEvent.Time" class="control-label">Time</label>
+        <input asp-for="NewEvent.Time" type="time" class="form-control" required />
+        <span asp-validation-for="NewEvent.Time" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Event</button>
+</form>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
