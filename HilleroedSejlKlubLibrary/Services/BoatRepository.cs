@@ -57,7 +57,7 @@ namespace HillerødSejlKlub.Services
             }
         }
 
-        public Dictionary<int, Boat> GetAllBoats()
+        public Dictionary<int, Boat> GetAll()
         {
             if (!_boatDictionary.Any())
             {
@@ -144,11 +144,6 @@ namespace HillerødSejlKlub.Services
             string message = $"{boat} got updated info.\n";
             BoatMaintenanceLog.Save(message);
         }
-
-    
-
-
-
 
 
 

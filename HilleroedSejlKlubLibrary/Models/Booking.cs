@@ -79,7 +79,7 @@ namespace HillerødSejlKlub.Models
         #region Methods
         public string Emergency()
         {
-            return $"EMERGENCY! {User.Name} has not returned within his/her estimated return time period! Send patrols ASAP!";
+            return $"EMERGENCY! {User.Name} has not returned within his/her estimated return time! Send patrols ASAP!";
         }
 
         public override string ToString()
