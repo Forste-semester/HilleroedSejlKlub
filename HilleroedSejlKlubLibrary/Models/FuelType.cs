@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Models
 {
-    public  enum FuelType
+    public enum FuelType
     {
         BENZIN, EL, DIESEL
     }
