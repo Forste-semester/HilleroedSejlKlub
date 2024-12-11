@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace HillerødSejlKlub.Data
 {
-    public class BoatCollection
+    public static class BoatCollection
     {
 
         private static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>()

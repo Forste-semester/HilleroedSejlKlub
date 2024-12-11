@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Data
 {
-    public class BlogCollection
+    public static class BlogCollection
 
     {
 

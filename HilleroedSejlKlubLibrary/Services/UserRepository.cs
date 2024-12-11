@@ -22,6 +22,7 @@ namespace HillerødSejlKlub.Services
             return _users;
         }
 
+
         public User GetUserById(int id)
         {
             if (_users.ContainsKey(id))

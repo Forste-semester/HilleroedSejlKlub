@@ -1,4 +1,59 @@
 ﻿@page
 @model HillerødSejlKlubWeb.Pages.BookingsModel
 @{
+    <h1>Bookings</h1>
+    <p></p>
+    <a asp-page="./CreateBooking" class="btn btn-primary create-button">Opret ny booking</a>
+    <p></p>
+    <style>
+        th {
+            padding: 0px 20px;
+        }
+    </style>
+    <style>
+        td {
+            padding: 0px 20px;
+        }
+    </style>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Name</th>
+                <th>Boat Type</th>
+                <th>Return Time</th>
+                <th>At Sea</th>
+                <th>Emergency Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Bookings != null && Model.Bookings.Any())
+            {
+                foreach (var booking in Model.Bookings.Values)
+                {
+                    <tr>
+                        <td>#@booking.Id</td>
+                        <td>@booking.BookingDate</td>
+                        <td>@booking.Location</td>
+                        <td>@booking.User.Name</td>
+                        <td>@booking.Boat.BoatType</td>
+                        <td>@booking.ReturnTime.TimeOfDay</td>
+                        <td>@booking.AtSea</td>
+                        <td>@booking.EmergencyStatus </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2">Ingen bookings fundet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    ViewData["BookingsAsList"] = Model.Bookings;
 }
