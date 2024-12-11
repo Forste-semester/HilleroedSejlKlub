@@ -16,7 +16,7 @@ namespace HillerødSejlKlub
         void CreateBooking(Booking booking);
         Booking GetBookingById(int id);
         void RemoveBookingById(int id);
-        Booking UpdateBookingById(int bookingId, int year, int month, int day, int returnHour);
+        Booking UpdateBookingById(int bookingId, string location, int year, int month, int day, int returnHour);
         List<Booking> GetAll();
         void PrintAllBookings();
         #endregion
