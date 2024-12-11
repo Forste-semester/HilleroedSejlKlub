@@ -27,7 +27,7 @@ namespace HillerødSejlKlubWeb.Pages
 
         public void OnGet()
         {
-            Boats = _boatRepository.GetAllBoats();
+            Boats = _boatRepository.GetAll();
 
             foreach (var item in Boats)
             {
