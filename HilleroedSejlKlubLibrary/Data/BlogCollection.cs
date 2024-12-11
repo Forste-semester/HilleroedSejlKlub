@@ -23,7 +23,6 @@ namespace HillerødSejlKlub.Data
         public static Dictionary<string, Blog> BlogsData
         {
             get { return _blogsData; }
-
         }
     }
 }

@@ -1,4 +1,51 @@
 ﻿@page
 @model HillerødSejlKlubWeb.Pages.BlogModel
-@{
-}
+
+<h1>Blog Management</h1>
+<br>
+
+<h2>Create a New Blog</h2>
+<form method="post" asp-page-handler="CreateBlog">
+    <br>
+    <label for="id">Id:</label><br>
+    <input type="text" id="id" name="Blog.Id" required /><br><br>
+    <label for="description">Description:</label><br>
+    <input type="text" id="description" name="Blog.Description" required, style=" font-size: 24px; padding: 20px 40px;" /><br><br>
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="Blog.Date" required /><br><br>
+    <button type="submit">Create Blog</button><br><br>
+</form>
+
+<h2>Update Blog</h2>
+
+<form method="post" asp-page-handler="UpdateBlog">
+    <br>
+    <label for="existingId">Existing Id:</label><br>
+    <input type="text" id="existingId" name="id" required /><br><br>
+    <label for="newId">New Id:</label><br>
+    <input type="text" id="newId" name="newId" required /><br><br>
+    <label for="newDescription">New Description:</label><br>
+    <input type="text" id="newDescription" name="newDescription" required, style=" font-size: 24px; padding: 20px 40px;" /><br><br>
+    <label for="newDate">New Date:</label><br>
+    <input type="date" id="newDate" name="newDate" required /><br><br>
+    <button type="submit">Update Blog</button><br><br>
+</form>
+
+<h2>Delete Blog</h2>
+
+<form method="post" asp-page-handler="DeleteBlog">
+    <br>
+    <label for="deleteId">Id:</label><br>
+    <input type="text" id="deleteId" name="id" required /><br><br>
+    <button type="submit">Delete</button><br><br>
+</form>
+
+<h2>All Blogs</h2><br >
+<formmethod ="post" asp-page-handler="All Blogs">
+    <button type="submit">Show All Blogs </button><br><br>
+</formmethod>
+
+
+
+
+

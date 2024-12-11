@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HillerødSejlKlub.Services
 {
-    public class BookingRepository : IBookingRepository
+    public class BookingRepository
     {
         #region Instance fields
         private Dictionary<int, Booking> _bookings;

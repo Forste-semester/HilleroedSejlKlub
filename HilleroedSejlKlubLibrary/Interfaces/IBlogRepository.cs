@@ -1,5 +1,6 @@
 ﻿using HillerødSejlKlub.Models;
 using HillerødSejlKlub.Services;
+using HilleroedSejlKlubLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,13 @@ namespace HillerødSejlKlub.Interfaces
 {
     public interface IBlogRepository
     {
-        void createBlog(Blog blog);
+        void CreateBlog(Blog blog);
         Blog GetBlogById(string id);
-        void DeleteBlogById(string íd);
+        void DeleteBlogById(string id);
 
         void UpdateBlogById(string id, string NewId, string NewDescription, DateTime NewDate);
 
-        void PrintAllBlogs(); 
-        
+        List<Blog> PrintAllBlogs();
     }
 }
 

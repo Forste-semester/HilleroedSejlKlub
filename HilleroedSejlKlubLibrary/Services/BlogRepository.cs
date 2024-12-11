@@ -1,5 +1,7 @@
-﻿using HillerødSejlKlub.Interfaces;
+﻿using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Models;
+using HilleroedSejlKlubLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +15,20 @@ namespace HillerødSejlKlub.Services
     {
 
         #region Instance Fields 
-        private Dictionary<string, Blog> _blogs = new Dictionary<string, Blog>();
+        private Dictionary<string, Blog> _blogs;
         #endregion
 
 
         #region Constructor
         public BlogRepository()
         {
-            _blogs = new Dictionary<string, Blog>();
+            _blogs = new Dictionary<string, Blog>(BlogCollection.BlogsData);
 
         }
         #endregion
 
 
-        public void createBlog(Blog blog)
+        public void CreateBlog(Blog blog)
         {
             if (!_blogs.Keys.Contains(blog.Id))
             {
@@ -92,19 +94,19 @@ namespace HillerødSejlKlub.Services
         }
 
 
-        public void PrintAllBlogs()
+        public List<Blog> PrintAllBlogs()
         {
-
-            if (_blogs == null)
-            {
-                Console.WriteLine("No Blogs are found");
-            }
-            else foreach (Blog blog in _blogs.Values)
+                if (_blogs == null)
                 {
-                    //Console.WriteLine(_blogs.Values.ToString()); 
-                    
-                    Console.WriteLine($"Id: {blog.Id}, Description: {blog.Description}, Date: {blog.Date} ");
+                    Console.WriteLine("No Blogs are found");
                 }
+                else foreach (Blog blog in _blogs.Values)
+                    {
+                        //Console.WriteLine(_blogs.Values.ToString()); 
+
+                        Console.WriteLine($"Id: {blog.Id}, Description: {blog.Description}, Date: {blog.Date} ");
+                    }
+                return _blogs.Values.ToList();
         }
     }
 }
