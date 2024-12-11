@@ -15,19 +15,32 @@ builder.Logging.ClearProviders(); // Optional: clears default providers
 builder.Logging.AddConsole();    // Logs to the console
 builder.Logging.AddDebug();      // Logs to Visual Studio Debug output
 
-var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseExceptionHandler("/Error");
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Register EventRepository as a scoped service
+        builder.Services.AddScoped<EventRepository>();
+        builder.Services.AddScoped<UserRepository>();
+
+        // Add Razor Pages
+        builder.Services.AddRazorPages();
+
+        var app = builder.Build();
+
+        // Enable static file serving
+        app.UseStaticFiles(); // This serves files from the wwwroot folder
+
+        // Configure routing and authorization middleware
+        app.UseRouting();
+        app.UseAuthorization();
+
+        // Map Razor Pages
+        app.MapRazorPages();
+
+        app.Run();
+    }
 }
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
