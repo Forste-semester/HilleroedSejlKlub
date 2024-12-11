@@ -1,4 +1,7 @@
-using Hiller�dSejlKlub.Services;
+using HillerødSejlKlub.Data;
+using HillerødSejlKlub.Models;
+using HillerødSejlKlub.Services;
+using HilleroedSejlKlubLibrary.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<BookingRepository>();
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<BoatRepository>();
+
+builder.Logging.ClearProviders(); // Optional: clears default providers
+builder.Logging.AddConsole();    // Logs to the console
+builder.Logging.AddDebug();      // Logs to Visual Studio Debug output
 
 var app = builder.Build();
 
