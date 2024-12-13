@@ -22,8 +22,12 @@ namespace HillerødSejlKlub.Models
 
         #region Constructors 
 
-
-
+        public Boat()
+        {
+            Id = _nextId++;
+            Boatlog = new List<Maintenance>();
+            ImagePath = "/images/billede-paa-vej.jpg"; // Provide a default value
+        }
 
         public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, string imagePath = "/images/billede-paa-vej.jpg")
 
@@ -48,6 +52,7 @@ namespace HillerødSejlKlub.Models
 
         }
 
+       
 
 
         #endregion
@@ -65,7 +70,7 @@ namespace HillerødSejlKlub.Models
 
 
         public double Size { get; set; }
-        public int Year { get; }
+        public int Year { get; set; }
 
         public Engine Engine { get; set; }
 

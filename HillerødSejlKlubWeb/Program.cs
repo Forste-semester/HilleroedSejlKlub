@@ -18,11 +18,6 @@ builder.Logging.AddConsole();    // Logs to the console
 builder.Logging.AddDebug();      // Logs to Visual Studio Debug output
 
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
 
         // Register EventRepository as a scoped service
         builder.Services.AddScoped<EventRepository>();
@@ -44,5 +39,4 @@ public class Program
         app.MapRazorPages();
 
         app.Run();
-    }
-}
+  
