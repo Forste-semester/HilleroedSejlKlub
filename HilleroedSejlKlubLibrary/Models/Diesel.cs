@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HillerødSejlKlub.Models;
+
 namespace HilleroedSejlKlubLibrary.Models
 {
     public class DieselEngine : Engine
@@ -20,9 +20,11 @@ namespace HilleroedSejlKlubLibrary.Models
         }
 
         #endregion
+        
         #region Properties
         public int TankCapacity { get; set; }
         #endregion
+        
         #region Methods
 
         public override string ToString()

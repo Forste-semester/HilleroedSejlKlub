@@ -56,16 +56,16 @@ else
     <p>No events available at the moment.</p>
 }
 
-<!-- Display success or error messages -->
+<!-- Display success or error messages at the center of the screen -->
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success">
+    <div class="alert alert-success centered-message">
         @TempData["SuccessMessage"]
     </div>
 }
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger centered-message">
         @TempData["ErrorMessage"]
     </div>
 }

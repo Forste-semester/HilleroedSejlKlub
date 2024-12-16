@@ -17,7 +17,7 @@ namespace HillerødSejlKlub.Services
         #region Constructor
         public BookingRepository()
         {
-            _bookings = new Dictionary<int, Booking>(BookingCollection.BookingData);
+            //_bookings = new Dictionary<int, Booking>(BookingCollection.BookingData);
         }
         #endregion
         #region CRUD Methods

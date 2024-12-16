@@ -9,16 +9,20 @@ namespace HilleroedSejlKlubLibrary.Models
 {
     public class ElectricEngine : Engine
     {
+
         #region Constructor
+
         public ElectricEngine(string name, int batteryCapacityInKWH, FuelType fuelType) : base(name, fuelType)
         {
 
             BatteryCapacity = batteryCapacityInKWH;
         }
         #endregion
+        
         #region Properties
         public int BatteryCapacity { get; set; } // Specific to Electric engines
         #endregion
+        
         #region Methods
         public override string ToString()
         {

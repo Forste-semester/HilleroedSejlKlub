@@ -9,7 +9,9 @@ namespace HillerødSejlKlub.Models
 {
     public class Event : IEvent
     {
+
         #region Constructor
+
         public Event(string title, string body, int day,int month,int year, string time, string location, string creator, double price)
         {
             Title = title;
@@ -24,6 +26,7 @@ namespace HillerødSejlKlub.Models
             Participants = new List<User>();
         }
         #endregion
+        
         #region Properties
         public Event() { Participants = new List<User>(); }
         public string Title { get; set; }

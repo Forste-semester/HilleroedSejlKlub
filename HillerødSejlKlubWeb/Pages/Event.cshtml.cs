@@ -4,6 +4,7 @@ using HillerødSejlKlub.Models;
 using HillerødSejlKlub.Services;
 using System.Collections.Generic;
 using HillerødSejlKlub.Interfaces;
+using System.Runtime.Serialization;
 
 namespace HillerødSejlKlubWeb.Pages
 {
@@ -22,6 +23,9 @@ namespace HillerødSejlKlubWeb.Pages
         public string SelectedEventTitle { get; set; }  // The selected event's title
 
         public string ErrorMessage { get; set; }
+
+        
+        public List<User> Participants { get; set; }
 
         public EventModel(EventRepository eventRepository, UserRepository userRepository)
         {
@@ -49,17 +53,19 @@ namespace HillerødSejlKlubWeb.Pages
             if (string.IsNullOrEmpty(title))
             {
                 ModelState.AddModelError(string.Empty, "Event title is required.");
+                TempData["ErrorMessage"] = "Event title is required."; // Set error message
                 return RedirectToPage();  // Reload the page
             }
 
             try
             {
                 _eventRepository.RemoveEvent(title);
+                TempData["SuccessMessage"] = "Event deleted successfully.";  // Set success message
             }
             catch (ArgumentException)
             {
                 // Handle the case where the event doesn't exist
-                ModelState.AddModelError(string.Empty, "Event not found.");
+                TempData["ErrorMessage"] = "Event not found.";  // Set error message
             }
 
             // Reload the event list after deletion

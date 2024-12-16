@@ -9,16 +9,21 @@ namespace HillerødSejlKlub.Models
 {
     public abstract class Engine : IEngine
     {
+
         #region Constructor
+
         protected Engine(string name, FuelType fuelType)
         {
             Name = name;
             FuelType = fuelType;
         }
+
         #endregion
+        
         #region Properties
         public string Name { get; private set; }
         public FuelType FuelType { get; set; }
+        
         public string FormattedFuelType
         {
             get
@@ -36,6 +41,7 @@ namespace HillerødSejlKlub.Models
               
             }
         }
+        
         #endregion
         #region Methods
 
