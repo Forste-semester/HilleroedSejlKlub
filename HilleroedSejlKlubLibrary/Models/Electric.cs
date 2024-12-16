@@ -10,6 +10,7 @@ namespace HilleroedSejlKlubLibrary.Models
     public class ElectricEngine : Engine
     {
 
+        
         public ElectricEngine(string name, int batteryCapacityInKWH, FuelType fuelType) : base(name, fuelType)
         {
 

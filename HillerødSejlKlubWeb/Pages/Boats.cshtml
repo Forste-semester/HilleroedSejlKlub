@@ -14,15 +14,13 @@
     <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Alle både</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Sejlbåde</a>
+    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Tilføj en båd</a>
   </li>
 
     <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Motorbåde</a>
+    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Fjern en båd</a>
   </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-3" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Jolle</a>
-  </li>
+  
 </ul>
 <div class="tab-content pt-5" id="tab-content">
   <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
@@ -226,18 +224,18 @@
         <span asp-validation-for="BoatModel" class="text-danger"></span>
     </div>
 
-    <!-- Boat Type -->
- <div class="form-group">
-        <label for="BoatType" class="control-label">Boat Type</label>
-        <select asp-for="BoatType" class="form-control" required>
-            <option value="">-- Select Boat Type --</option>
-            @foreach (BoatType boatType in Enum.GetValues(typeof(BoatType)))
-            {
-                <option value="@boatType">@boatType</option>
-            }
-        </select>
-        <span asp-validation-for="BoatType" class="text-danger"></span>
-    </div>
+   <!-- Boat Type -->
+<div class="form-group">
+    <label for="BoatType" class="control-label">Boat Type</label>
+    <select asp-for="BoatType" class="form-control" required>
+        <option value="0">-- Select Boat Type --</option>
+        @foreach (var boatType in Enum.GetValues(typeof(BoatType)))
+        {
+            <option value="@boatType">@boatType</option>
+        }
+    </select>
+    <span asp-validation-for="BoatType" class="text-danger"></span>
+</div>
 
     <!-- Size -->
     <div class="form-group">
@@ -259,25 +257,105 @@
         <input asp-for="SailNumber" class="form-control" required />
         <span asp-validation-for="SailNumber" class="text-danger"></span>
     </div>
+        <!-- Engine Fields (Optional) -->
+    <h3>Engine Details (Optional)</h3>
+    <div class="form-group">
+        <label asp-for="EngineName" class="control-label">Engine Name</label>
+        <input asp-for="EngineName" class="form-control" />
+        <span asp-validation-for="EngineName" class="text-danger"></span>
+    </div>
 
-    <!-- Submit Button -->
+    <div class="form-group">
+        <label for="FuelType" class="control-label">Fuel Type</label>
+        <select asp-for="FuelType" class="form-control" required>
+            <option value="None" selected>@("No Engine")</option> <!-- Default to No Engine -->
+            @foreach (FuelType fuelType in Enum.GetValues(typeof(FuelType)))
+            {
+                <option value="@fuelType">@fuelType</option>
+            }
+        </select>
+        <span asp-validation-for="BoatType" class="text-danger"></span>
+    </div>
+
+   
+
+    <div class="row boatrow pt-3">
+
+    <div class="col-sm-4">
+            <div class="card">
+        <div class="card-body">
+                <div class="form-group">
+                    <h3>Benzin</h3>
+                    <label for="TankCapacity" class="control-label">Tank Capacity (L)</label>
+                        <input type="number" asp-for="TankCapacity" class="form-control" />
+                </div>
+                    <div class="form-group">
+                        <label for="CylinderCount" class="control-label">Number of Cylinders</label>
+                        <input type="number" asp-for="Cylinders" class="form-control" />
+                    </div>
+                </div>
+               
+        </div>
+        
+    </div>
+
+        <div class="col-sm-4 ">
+                <div class="card">
+        <div class="card-body">
+                <div class="form-group">
+                    <h3>Diesel</h3>
+                    <label for="DieselCapacity" class="control-label">Diesel Capacity (L)</label>
+                    <input type="number" asp-for="TankCapacity" class="form-control" />
+                </div>
+                    </div>
+        </div>
+    </div>
+
+        <div class="col-sm-4">
+                    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <h3>Elmotor</h3>
+                <label for="BatteryPower" class="control-label">Battery Power (kWh)</label>
+                <input type="number" asp-for="BatteryCapacity" class="form-control" />
+            </div>
+      </div>
+    </div>
+    </div>
+
+    </div>
     <button type="submit" class="btn btn-primary">Create Boat</button>
-</form>
+
+    </form>
+
+
 
   
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
       </div>
 
-  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">Tab 3 selected</div>
-
-  
-
-  <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">Tab 4 selected</div>
-
-
-
-
-
+  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
+      
+@if (Model.Boats != null && Model.Boats.Any())
+{
+    <ul>
+        @foreach (var boatItem in Model.Boats)
+        {
+            <li>
+                ID: @boatItem.Value.Id<br />
+                <strong>@boatItem.Value.Name</strong><br />
+                @boatItem.Value.Model <br />
+                Type: @boatItem.Value.BoatType <br />
+                Årstal: @boatItem.Value.Year <br />
+               
+                <form method="post" asp-page-handler="DeleteBoat" asp-route-id="@boatItem.Value.Id">
+                    <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+  </div>
 </div>
 
