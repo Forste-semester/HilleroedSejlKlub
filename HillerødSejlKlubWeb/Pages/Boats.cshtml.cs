@@ -18,6 +18,9 @@ namespace HillerødSejlKlubWeb.Pages
 
         private readonly ILogger<IndexModel> _logger;
 
+
+        public Dictionary<int, Boat> Boats { get; set; }
+
         [BindProperty]
      
         public string BoatName { get; set; }
@@ -40,12 +43,12 @@ namespace HillerødSejlKlubWeb.Pages
         [BindProperty]
         public BoatType BoatType { get; set; }
 
-        [BindProperty]
-        public Engine Engine { get; set; }
+       
+         public Engine Engine { get; set; }
 
 
 
-        // BindProperties for Engine Details
+        // ------- BindProperties for Engine Details
         [BindProperty]
         public string EngineName { get; set; }
         [BindProperty]
@@ -58,18 +61,17 @@ namespace HillerødSejlKlubWeb.Pages
         [BindProperty]
         public FuelType FuelType { get; set; }
 
-
-
-        public Dictionary<int, Boat> Boats { get; set; }
-
+       
         public BoatsModel(BoatRepository boatRepository, ILogger<IndexModel> logger)
         {
+
+            
             _boatRepository = boatRepository;
             _logger = logger;
             _logger.LogInformation("This is an info log.");
             _logger.LogWarning("This is a warning log.");
             _logger.LogError("This is an error log.");
-
+            Boats = _boatRepository.GetAll();
 
         }
 
@@ -77,7 +79,7 @@ namespace HillerødSejlKlubWeb.Pages
 
         public void OnGet()
         {
-            Boats = _boatRepository.GetAll();
+           
 
             foreach (var item in Boats)
             {
@@ -85,17 +87,48 @@ namespace HillerødSejlKlubWeb.Pages
             }
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostDeleteBoat(int id)
         {
-
-
-            // Input validation logic (if needed)
-            if (!ModelState.IsValid)
-            {
-                return Page();
+            if (id == null)  {           
+                ModelState.AddModelError(string.Empty, "Boat not found.");
+                return RedirectToPage();  // Reload the page
             }
 
-            // Create the new boat object
+            try
+            {
+                _boatRepository.RemoveBoatByID(id);
+            }
+            catch (ArgumentException)
+            {
+                // Handle the case where the event doesn't exist
+                ModelState.AddModelError(string.Empty, "Boat not found.");
+            }
+
+            // Reload the event list after deletion
+            return RedirectToPage();  // This refreshes the page
+
+        }
+
+        public IActionResult OnPost()
+        {
+            
+
+            switch(FuelType)
+            {
+                case FuelType.El:
+                    Engine = new ElectricEngine(EngineName, BatteryCapacity, FuelType);
+                    break;
+                case FuelType.Benzin:
+                    Engine = new GasEngine(EngineName, TankCapacity, Cylinders, FuelType);
+                    break;
+                case FuelType.Diesel:
+                    Engine = new DieselEngine(EngineName, TankCapacity, FuelType);
+                    break;
+
+
+            }
+
+       
             var newBoat = new Boat
             {
                 Name = BoatName,
@@ -104,7 +137,7 @@ namespace HillerødSejlKlubWeb.Pages
                 Size = Size,
                 Year = Year,
                 SailNumber = SailNumber,
-                ImagePath = ImagePath,
+                ImagePath = "/images/billede-paa-vej.jpg",
                 Engine = Engine
             };
 

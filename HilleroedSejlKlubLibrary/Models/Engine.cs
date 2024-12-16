@@ -10,13 +10,15 @@ namespace HillerødSejlKlub.Models
     public abstract class Engine : IEngine
     {
 
+        protected Engine() { }
+
         protected Engine(string name, FuelType fuelType)
         {
             Name = name;
             FuelType = fuelType;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; private set; } = string.Empty;
 
         public FuelType FuelType { get; set; }
 
