@@ -1,21 +1,61 @@
 ﻿@page
+@using HillerødSejlKlub.Data
 @using HillerødSejlKlub.Models
 @model HillerødSejlKlubWeb.Pages.MembersModel
 @{
 }
-
 <br />
 <h2>List of Members</h2>
 
-<table>
+<style>
+    th {
+        padding: 0px 20px;
+    }
+</style>
+<style>
+    td {
+        padding: 0px 20px;
+    }
+</style>
+
+<table class="table">
     <thead>
-        
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Titel</th>
+        </tr>
     </thead>
 
     <tbody>
-        @foreach (var user in Model.UserList.Values)
+        @foreach (var user in Model.Users.Values)
         {
-
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Phone</td>
+                <td>@user.TitleType</td>
+            </tr>
         }
     </tbody>
 </table>
+<br />
+<p></p>
+    <a asp-page="./CreateMember" class="btn btn-primary create-button">Opret nyt medlem</a>
+<p></p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}

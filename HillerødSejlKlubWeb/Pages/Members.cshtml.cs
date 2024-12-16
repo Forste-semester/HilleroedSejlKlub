@@ -8,10 +8,9 @@ namespace HillerødSejlKlubWeb.Pages
 {
     public class MembersModel : PageModel
     {
-        private readonly ILogger<MembersModel> logger;
         private readonly UserRepository _userRepository;
 
-        public Dictionary<int, User> UserList { get; set; }
+        public Dictionary<int, User> Users { get; set; }
 
         public MembersModel(UserRepository userRepository)
         {
@@ -20,8 +19,9 @@ namespace HillerødSejlKlubWeb.Pages
 
         public void OnGet()
         {
-            UserList =_userRepository.GetAllUsers();
+            Users =_userRepository.GetAllUsers();
         }
 
+        
     }
 }
