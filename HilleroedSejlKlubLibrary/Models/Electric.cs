@@ -1,4 +1,5 @@
 ﻿using HillerødSejlKlub.Models;
+using HilleroedSejlKlubLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace HilleroedSejlKlubLibrary.Models
     public class ElectricEngine : Engine
     {
 
+        
         public ElectricEngine(string name, int batteryCapacityInKWH, FuelType fuelType) : base(name, fuelType)
         {
 

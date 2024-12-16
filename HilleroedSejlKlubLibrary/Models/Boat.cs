@@ -1,6 +1,7 @@
 using HillerødSejlKlub.Data;
 using HillerødSejlKlub.Interfaces;
 using HillerødSejlKlub.Services;
+using HilleroedSejlKlubLibrary.Models;
 using System;
 
 using System.Collections.Generic;
@@ -22,10 +23,15 @@ namespace HillerødSejlKlub.Models
 
         #region Constructors 
 
+       
+        public Boat()
+        {
+            Id = _nextId++;
+            Boatlog = new List<Maintenance>();
+            ImagePath = "/images/billede-paa-vej.jpg"; // Provide a default value
+        }
 
-
-
-        public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, string imagePath = "/images/billede-paa-vej.jpg")
+        public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, string imagePath = "/images/billede-paa-vej.jpg", Engine engine = null)
 
         {
             Id = _nextId++;
@@ -36,18 +42,14 @@ namespace HillerødSejlKlub.Models
             Year = year;
             SailNumber = sailNumber;
             ImagePath = imagePath;
+            Engine = engine;
             Boatlog = new List<Maintenance>();
 
         }
 
-        public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, Engine engine, string imagePath = "/images/billede-paa-vej.jpg") : this(name, model, boatType, size, year, sailNumber, imagePath)
+       
 
-        {
-
-            Engine = engine;
-
-        }
-
+       
 
 
         #endregion
@@ -57,15 +59,12 @@ namespace HillerødSejlKlub.Models
 
         public string ImagePath { get; set; }
         public int Id { get; }
-        public string SailNumber { get; set; }
-        public string Name { get; set; }
-        public string Model { get; set; }
+        public string SailNumber { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Model { get; set; } = string.Empty;
         public BoatType BoatType { get; set; }
-
-
-
         public double Size { get; set; }
-        public int Year { get; }
+        public int Year { get; set; }
 
         public Engine Engine { get; set; }
 
