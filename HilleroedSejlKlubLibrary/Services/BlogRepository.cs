@@ -11,12 +11,9 @@ namespace HillerødSejlKlub.Services
 {
     public class BlogRepository : IBlogRepository
     {
-
         #region Instance Fields 
         private Dictionary<string, Blog> _blogs = new Dictionary<string, Blog>();
         #endregion
-
-
         #region Constructor
         public BlogRepository()
         {
@@ -24,8 +21,7 @@ namespace HillerødSejlKlub.Services
 
         }
         #endregion
-
-
+        #region Methods
         public void createBlog(Blog blog)
         {
             if (!_blogs.Keys.Contains(blog.Title))
@@ -92,5 +88,6 @@ namespace HillerødSejlKlub.Services
                     Console.WriteLine();
                 }
         }
+        #endregion
     }
 }

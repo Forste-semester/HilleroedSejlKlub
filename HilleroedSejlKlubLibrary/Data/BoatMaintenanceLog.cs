@@ -8,8 +8,10 @@ namespace HillerødSejlKlub.Data
 {
     public static class BoatMaintenanceLog
     {
+        #region Properties
         private static List<string> log = new List<string>();
-
+        #endregion
+        #region Methods
         public static void Save(string message)
         {
             log.Add(message);
@@ -26,5 +28,6 @@ namespace HillerødSejlKlub.Data
             }
             Console.WriteLine();
         }
+        #endregion
     }
 }

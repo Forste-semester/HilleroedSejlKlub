@@ -10,7 +10,7 @@ namespace HillerødSejlKlub.Interfaces
     public interface IEventRepository
     {
 
-
+        #region Methods
         void AddEvent(string title, string body, int day, int month, int year, string time, string location, string creator, double price);
         List<Event> GetAllEvents();
         Event GetEventByTitle(string eventTitle);
@@ -20,5 +20,6 @@ namespace HillerødSejlKlub.Interfaces
         void RemoveFromEvent(string eventTitle, User user);
         void PrintParticipants(string eventTitle);
         void PrintAllEvents();
+        #endregion
     }
 }

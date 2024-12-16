@@ -10,9 +10,7 @@ namespace HillerødSejlKlub.Models
 {
     public class Blog : BlogRepository, IBlogRepository
     {
-
         #region Constructor 
-
         public Blog(string title, string description, DateTime date)
         {
             Title = title;
@@ -20,8 +18,6 @@ namespace HillerødSejlKlub.Models
             Date = date;
         }
         #endregion
-
-
         #region Properties
 
         public string Title { get; set; }
@@ -29,16 +25,11 @@ namespace HillerødSejlKlub.Models
         public DateTime Date { get; set; }
 
         #endregion Properties
-
-
         #region Methods
         public override string ToString()
         {
             return $"title: {Title}, desciption: {Description}, date: {Date}";
         }
         #endregion Methods
-
     }
-
-
 }

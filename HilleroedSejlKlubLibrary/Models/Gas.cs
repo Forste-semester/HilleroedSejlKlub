@@ -1,4 +1,5 @@
 ﻿using HillerødSejlKlub.Models;
+using HilleroedSejlKlubLibrary.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +14,21 @@ namespace HilleroedSejlKlubLibrary.Models
         public GasEngine(string name, int tankCapacityInLiters, int cylinders, FuelType fuelType) : base(name, fuelType)
         {
 
-            FuelType = FuelType;
+        
             TankCapacity = tankCapacityInLiters;
             Cylinders = cylinders;
 
         }
 
-        #endregion
+      
 
+        #endregion
         #region Properties
         public int TankCapacity { get; set; }
 
-        public FuelType FuelType { get; set; }
+        
         public int Cylinders { get; set; }
         #endregion
-
         #region Methods
 
         public override string ToString()

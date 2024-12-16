@@ -16,10 +16,7 @@ namespace HillerødSejlKlub.Services
     {
         private Dictionary<string, Event> _events = EventCollection.EventData;        
 
-        public EventRepository()
-        {
-            //_events = new Dictionary<string, Event>(EventCollection.EventData);
-        }
+       
         public void AddEvent(string title, string body, int day, int month, int year, string time, string location, string creator, double price)
         {
         // Ensure the event title is not already taken

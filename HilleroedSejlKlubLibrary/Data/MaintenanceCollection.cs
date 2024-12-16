@@ -17,7 +17,7 @@ namespace HilleroedSejlKlubLibrary.Data
 {
     public class MaintenanceCollection
     {
-        
+        #region Properties
         private static List<Maintenance>  _maintenanceData= new List<Maintenance>()
         {
 
@@ -27,8 +27,9 @@ namespace HilleroedSejlKlubLibrary.Data
             new Maintenance(Boats(4), "New mast", 10000),
             new Maintenance(Boats(5), "Oil change", 500)
         };
-
-        public static List<Maintenance> MaintenanceData {  get { return _maintenanceData; } }
+        public static List<Maintenance> MaintenanceData { get { return _maintenanceData; } }
+        #endregion
+        #region Methods
         public static Boat Boats(int boatId)
         {
             if (BoatCollection.boatData.ContainsKey(boatId))
@@ -37,6 +38,6 @@ namespace HilleroedSejlKlubLibrary.Data
             }
             return null;
         }
-
+        #endregion
     }
 }

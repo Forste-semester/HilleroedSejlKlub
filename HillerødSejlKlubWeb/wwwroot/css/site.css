@@ -103,3 +103,31 @@ body {
 
 }
 
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+
+footer {
+    margin-top: auto; /* Skubber footeren til bunden */
+    background-color: #f8f9fa; /* Valgfrit: �ndrer baggrundsfarven */
+    padding: 1rem; /* Tilf�j polstring */
+    text-align: center; /* Centerer indholdet i footeren */
+
+.centered-message {
+    position: fixed; /* Fixed positioning to keep it in the same spot even when the user scrolls */
+    top: 50%; /* Position vertically in the middle of the viewport */
+    left: 50%; /* Position horizontally in the middle of the viewport */
+    transform: translate(-50%, -50%); /* Offset the element to ensure true centering */
+    z-index: 9999; /* Ensure the message is on top of other content */
+    width: 80%; /* Optional: Adjust width to make the message not too wide */
+    max-width: 500px; /* Optional: Limit the maximum width */
+    padding: 20px;
+    text-align: center;
+
+}
