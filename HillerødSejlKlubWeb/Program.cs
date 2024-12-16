@@ -19,13 +19,6 @@ builder.Logging.AddDebug();      // Logs to Visual Studio Debug output
 // Add Razor Pages
 builder.Services.AddRazorPages();
 
-// Register EventRepository as a scoped service
-builder.Services.AddScoped<EventRepository>();
-builder.Services.AddScoped<UserRepository>();
-
-// Add Razor Pages
-builder.Services.AddRazorPages();
-
 var app = builder.Build();
 
 // Enable static file serving
@@ -37,10 +30,6 @@ app.UseAuthorization();
 
 // Map Razor Pages
 app.MapRazorPages();
-
-
-        app.Run();
-  
 
 app.Run();
 

@@ -103,6 +103,22 @@ body {
 
 }
 
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+
+footer {
+    margin-top: auto; /* Skubber footeren til bunden */
+    background-color: #f8f9fa; /* Valgfrit: �ndrer baggrundsfarven */
+    padding: 1rem; /* Tilf�j polstring */
+    text-align: center; /* Centerer indholdet i footeren */
+
 .centered-message {
     position: fixed; /* Fixed positioning to keep it in the same spot even when the user scrolls */
     top: 50%; /* Position vertically in the middle of the viewport */
@@ -113,4 +129,5 @@ body {
     max-width: 500px; /* Optional: Limit the maximum width */
     padding: 20px;
     text-align: center;
+
 }

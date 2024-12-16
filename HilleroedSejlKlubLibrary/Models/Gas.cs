@@ -9,8 +9,7 @@ namespace HilleroedSejlKlubLibrary.Models
 {
     public class GasEngine : Engine
     {
-  
-        
+
         #region Constructor
         public GasEngine(string name, int tankCapacityInLiters, int cylinders, FuelType fuelType) : base(name, fuelType)
         {
@@ -24,14 +23,12 @@ namespace HilleroedSejlKlubLibrary.Models
       
 
         #endregion
-
         #region Properties
         public int TankCapacity { get; set; }
 
         
         public int Cylinders { get; set; }
         #endregion
-
         #region Methods
 
         public override string ToString()

@@ -24,12 +24,12 @@
                 <th>Name</th>
                 <th>Boat Type</th>
                 <th>Return Time</th>
-                <th>At Sea</th>
+                <th>Ude og sejle</th>
                 <th>Emergency Status</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model.Bookings != null && Model.Bookings.Any())
+            @if (Model.Bookings.Any())
             {
                 foreach (var booking in Model.Bookings.Values)
                 {
@@ -40,7 +40,7 @@
                         <td>@booking.User.Name</td>
                         <td>@booking.Boat.BoatType</td>
                         <td>@booking.ReturnTime.TimeOfDay</td>
-                        <td>@booking.AtSea</td>
+                        <td>@(booking.AtSea ? "Ja" : "Nej")</td>
                         <td>@booking.EmergencyStatus </td>
                     </tr>
                 }

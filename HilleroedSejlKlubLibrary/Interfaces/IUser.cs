@@ -9,11 +9,15 @@ namespace HillerødSejlKlub.Interfaces
 {
     public interface IUser
     {
+        #region Properties
         string Name { get; }
         string Email { get; }
         string Phone { get; }
         int Id { get; }
         TitleType TitleType { get; }
+        #endregion
+        #region Methods
         string ToString();
+        #endregion
     }
 }

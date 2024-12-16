@@ -10,7 +10,7 @@ namespace HillerødSejlKlub.Models
     public abstract class Engine : IEngine
     {
 
-        protected Engine() { }
+        #region Constructor
 
         protected Engine(string name, FuelType fuelType)
         {
@@ -18,10 +18,12 @@ namespace HillerødSejlKlub.Models
             FuelType = fuelType;
         }
 
-        public string Name { get; private set; } = string.Empty;
-
+        #endregion
+        
+        #region Properties
+        public string Name { get; private set; }
         public FuelType FuelType { get; set; }
-
+        
         public string FormattedFuelType
         {
             get
@@ -39,7 +41,8 @@ namespace HillerødSejlKlub.Models
               
             }
         }
-
+        
+        #endregion
         #region Methods
 
 

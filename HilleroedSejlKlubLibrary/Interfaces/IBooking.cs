@@ -10,18 +10,18 @@ namespace HillerødSejlKlub.Interfaces
     public interface IBooking
     {
         #region Properties
-        public int Id { get; }
-        public DateOnly BookingDate {  get; set; }
-        public DateTime ReturnTime { get; set; }
-        public bool AtSea {  get; set; }
-        public string EmergencyStatus { get; }
-        public User User { get; }
-        public Boat Boat { get; }
-        public string Location { get; set; }
+        int Id { get; }
+        DateOnly BookingDate {  get; set; }
+        DateTime ReturnTime { get; set; }
+        bool AtSea {  get; set; }
+        string EmergencyStatus { get; }
+        User User { get; }
+        Boat Boat { get; }
+        string Location { get; set; }
         #endregion
         #region Methods
-        public string Emergency();
-        public string ToString();
+        string Emergency();
+        string ToString();
         #endregion
     }
 }

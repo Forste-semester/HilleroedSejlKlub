@@ -9,6 +9,7 @@ namespace HillerødSejlKlub.Data
 {
     public static class EventCollection
     {
+        #region Data
         private static Dictionary<string, Event> _eventData = new Dictionary<string, Event>()
         {
             {"Julefrokost", new Event("Julefrokost", "Den bedste julefrokost.", 21,12,2024, "14:00", "Klubhuset", "Jeppe", 150) },
@@ -17,11 +18,12 @@ namespace HillerødSejlKlub.Data
             {"Bingoaften", new Event("Bingoaften", "Sidegevinsterne er også gode.", 16,02,2025, "14:00", "Forsamlingshus på Dronningens Kovang", "Amalie", 50) },
             {"Afslutningsfest", new Event("Afslutningsfest", "Sæsonafslutning med kæmpe fest for alle medlemmer.", 30,05,2025, "14:00", "Klubhuset", "Ebbe", 200) }
         };
-
+        #endregion
+        #region Properties
         public static Dictionary<string, Event> EventData
         {
             get { return _eventData; }
         }
-
+        #endregion
     }
 }

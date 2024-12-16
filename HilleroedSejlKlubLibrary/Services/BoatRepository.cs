@@ -14,7 +14,6 @@ namespace HillerødSejlKlub.Services
 {
     public class BoatRepository : IBoatRepository
     {
-
         #region Instance fields
 
 
@@ -22,8 +21,6 @@ namespace HillerødSejlKlub.Services
 
 
         #endregion
-
-
         #region Constructor
 
         public BoatRepository()
@@ -39,16 +36,12 @@ namespace HillerødSejlKlub.Services
             }
         }
         #endregion
-
-
         #region Properties 
 
 
 
 
         #endregion
-
-
         #region Methods
 
         public void AddBoat(Boat boat)
@@ -173,7 +166,6 @@ namespace HillerødSejlKlub.Services
         }
 
         #endregion
-
     }
 
 }

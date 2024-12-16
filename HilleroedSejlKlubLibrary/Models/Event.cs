@@ -9,7 +9,8 @@ namespace HillerødSejlKlub.Models
 {
     public class Event : IEvent
     {
-        
+
+        #region Constructor
 
         public Event(string title, string body, int day,int month,int year, string time, string location, string creator, double price)
         {
@@ -23,10 +24,11 @@ namespace HillerødSejlKlub.Models
             Creator = creator;
             Price = price;
             Participants = new List<User>();
-
         }
+        #endregion
+        
+        #region Properties
         public Event() { Participants = new List<User>(); }
-
         public string Title { get; set; }
         public string Body { get; set; }
         public int Day { get; set; }
@@ -36,10 +38,9 @@ namespace HillerødSejlKlub.Models
         public string Location { get; set; }
         public string Creator { get; set; }
         public double Price { get; set; }
-        public List<User> Participants { get; set; } 
-
-
-
+        public List<User> Participants { get; set; }
+        #endregion
+        #region Methods
         public override string ToString()
         {
             if(Price == 0)
@@ -49,6 +50,6 @@ namespace HillerødSejlKlub.Models
             }
             return $"Event: {Title}\nDate: {Day + Month + Year}\nTime: {Time}\nWhere: {Location}\nPrice: {Price}kr\nCreated by: {Creator}\n";
         }
-
+        #endregion
     }
 }

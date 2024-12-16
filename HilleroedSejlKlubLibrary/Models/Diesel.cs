@@ -1,15 +1,16 @@
-﻿using HillerødSejlKlub.Models;
-using HilleroedSejlKlubLibrary.Data;
+﻿using HilleroedSejlKlubLibrary.Data;
+using HilleroedSejlKlubLibrary.Models;
+using HilleroedSejlKlubLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace HilleroedSejlKlubLibrary.Models
 {
     public class DieselEngine : Engine
     {
-
         #region Constructor
         public DieselEngine(string name, int tankCapacityInLiters, FuelType fuelType) : base(name, fuelType)
         {
@@ -19,11 +20,11 @@ namespace HilleroedSejlKlubLibrary.Models
         }
 
         #endregion
-
+        
         #region Properties
         public int TankCapacity { get; set; }
         #endregion
-
+        
         #region Methods
 
         public override string ToString()
@@ -37,7 +38,6 @@ namespace HilleroedSejlKlubLibrary.Models
 
 
         #endregion
-
     }
 
 

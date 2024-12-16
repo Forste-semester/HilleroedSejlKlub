@@ -24,8 +24,8 @@ namespace HillerødSejlKlub.Services
         public void CreateBooking(Booking booking)
         {
                 _bookings.Add(booking.Id, booking);
+                Console.WriteLine($"Booking Added Succesfully! \nReceipt on your Booking:\n{booking.ToString()}");
         }
-
         public Booking GetBookingById(int bookingId)
         {
             try

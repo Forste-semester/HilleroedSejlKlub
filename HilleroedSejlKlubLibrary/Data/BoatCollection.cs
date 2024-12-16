@@ -12,7 +12,7 @@ namespace HillerødSejlKlub.Data
 {
     public static class BoatCollection
     {
-
+        #region Data
         private static Dictionary<int, Boat> _boatData = new Dictionary<int, Boat>()
         {
             {1, new Boat("Hammer", "Yamaha X-100", BoatType.Sejlbåd, 15, 2020, "DY2461", "/images/sejlbaad.jpg" , new GasEngine("Mercruiser", 20, 8, FuelType.Benzin)) },
@@ -21,8 +21,10 @@ namespace HillerødSejlKlub.Data
             {4, new Boat("Frederikke", "Wavebreaker 5300", BoatType.Motorbåd, 4.9, 2023, "OP2841", "/images/motorbaad.jpg" , new DieselEngine("Bladt Diesel X-300", 30, FuelType.Diesel)) },
             {5, new Boat("Thor", "Yamaha X-100", BoatType.Snipejolle, 4.1, 2020, "BY1627") }
         };
-
+        #endregion
+        #region Properties
         public static Dictionary<int, Boat> boatData { get { return _boatData; } }
+        #endregion
     }
 
 }
