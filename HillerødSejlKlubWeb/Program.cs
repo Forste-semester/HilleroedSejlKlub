@@ -38,4 +38,9 @@ app.UseAuthorization();
 // Map Razor Pages
 app.MapRazorPages();
 
+
+        app.Run();
+  
+
 app.Run();
+

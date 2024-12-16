@@ -1,5 +1,9 @@
 ﻿@page
+@using HilleroedSejlKlubLibrary.Data
 @using HilleroedSejlKlubLibrary.Models
+
+@using HillerødSejlKlub.Data
+
 @model HillerødSejlKlubWeb.Pages.BoatsModel
 @{
 }
@@ -201,7 +205,69 @@
 
   </div>
 
-      <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">Tab 2 selected</div>
+      <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+
+          
+<h3>Add new boat</h3>
+
+
+<form method="post">
+    <!-- Boat Name -->
+    <div class="form-group">
+        <label asp-for="BoatName" class="control-label">Name</label>
+        <input asp-for="BoatName" class="form-control" required />
+        <span asp-validation-for="BoatName" class="text-danger"></span>
+    </div>
+
+    <!-- Boat Model -->
+    <div class="form-group">
+        <label asp-for="BoatModel" class="control-label">Model</label>
+        <input asp-for="BoatModel" class="form-control" required />
+        <span asp-validation-for="BoatModel" class="text-danger"></span>
+    </div>
+
+    <!-- Boat Type -->
+ <div class="form-group">
+        <label for="BoatType" class="control-label">Boat Type</label>
+        <select asp-for="BoatType" class="form-control" required>
+            <option value="">-- Select Boat Type --</option>
+            @foreach (BoatType boatType in Enum.GetValues(typeof(BoatType)))
+            {
+                <option value="@boatType">@boatType</option>
+            }
+        </select>
+        <span asp-validation-for="BoatType" class="text-danger"></span>
+    </div>
+
+    <!-- Size -->
+    <div class="form-group">
+        <label asp-for="Size" class="control-label">Size (in meters)</label>
+        <input asp-for="Size" class="form-control" type="number" step="0.1" required />
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+
+    <!-- Year -->
+    <div class="form-group">
+        <label asp-for="Year" class="control-label">Year</label>
+        <input asp-for="Year" class="form-control" type="number" min="1900" max="2100" required />
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <!-- Sail Number -->
+    <div class="form-group">
+        <label asp-for="SailNumber" class="control-label">Sail Number</label>
+        <input asp-for="SailNumber" class="form-control" required />
+        <span asp-validation-for="SailNumber" class="text-danger"></span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Create Boat</button>
+</form>
+
+  
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+      </div>
 
   <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">Tab 3 selected</div>
 

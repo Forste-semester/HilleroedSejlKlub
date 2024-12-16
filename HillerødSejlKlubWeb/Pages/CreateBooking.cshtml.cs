@@ -48,6 +48,8 @@ namespace HillerødSejlKlubWeb.Pages
             User selectedUser = _userRepository.GetUserById(Id);
             Boat selectedBoat = _boatRepository.GetBoatByID(BoatId);
 
+
+
             var newBooking = new Booking(
                 selectedUser,
                 selectedBoat,
