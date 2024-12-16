@@ -9,7 +9,7 @@ namespace HillerødSejlKlub.Services
 
         public UserRepository()
         {
-            
+
         }
 
         public void CreateUser(User user)
