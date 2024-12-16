@@ -9,8 +9,6 @@ namespace HillerødSejlKlub.Interfaces
 {
     public interface IEventRepository
     {
-
-
         void AddEvent(string title, string body, int day, int month, int year, string time, string location, string creator, double price);
         List<Event> GetAllEvents();
         Event GetEventByTitle(string eventTitle);

@@ -13,6 +13,8 @@ public class AddEventModel : PageModel
     public Event NewEvent { get; set; }
 
     public string ErrorMessage { get; set; }
+    
+    public List<User> Participants { get; set; }
 
     public AddEventModel(EventRepository eventRepository)
     {
@@ -26,7 +28,8 @@ public class AddEventModel : PageModel
 
         if (!ModelState.IsValid)
         {
-            Console.WriteLine("ModelState is invalid. Errors:");
+            Console.WriteLine("ModelState is invalid");
+
             foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
                 Console.WriteLine(error.ErrorMessage);
@@ -36,14 +39,7 @@ public class AddEventModel : PageModel
         if (ModelState.IsValid)
         {
             Console.WriteLine("Stop2");
-            // Validate time manually if not set
-            if (string.IsNullOrEmpty(NewEvent.Time))
-            {
-                Console.WriteLine("Stop3");
-                NewEvent.Time = "12:00";  // Default time if not provided
-            }
-
-            
+                       
 
             // Add the new event to the repository
             _eventRepository.AddEvent(
@@ -58,6 +54,8 @@ public class AddEventModel : PageModel
                 NewEvent.Price
             );
             Console.WriteLine("Stop4");
+            // Set a confirmation message in TempData
+            TempData["SuccessMessage"] = "Event added successfully!";
             return RedirectToPage("/Event");
         }
 

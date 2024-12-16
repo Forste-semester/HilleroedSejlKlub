@@ -9,6 +9,7 @@ namespace HillerødSejlKlub.Models
 {
     public class Event : IEvent
     {
+        
 
         public Event(string title, string body, int day,int month,int year, string time, string location, string creator, double price)
         {
@@ -31,7 +32,6 @@ namespace HillerødSejlKlub.Models
         public int Day { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
-
         public string Time { get; set; }
         public string Location { get; set; }
         public string Creator { get; set; }
