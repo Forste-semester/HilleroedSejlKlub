@@ -29,6 +29,7 @@ namespace HillerødSejlKlub.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public TitleType TitleType { get; set; }
+
         #endregion
         #region Methods
         public override string ToString()
@@ -36,17 +37,17 @@ namespace HillerødSejlKlub.Models
 
             if (TitleType == TitleType.Board_Director)
             {
-                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Director\nID: {Id}\n";
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Director\nID: {Id}";
             }
 
 
             if (TitleType == TitleType.Board_Member)
             {
-                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Member\nID: {Id}\n";
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Member\nID: {Id}";
             }
             else
             {
-                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}\n";
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}";
             }
         }
         #endregion

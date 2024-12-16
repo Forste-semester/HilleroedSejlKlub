@@ -103,3 +103,19 @@ body {
 
 }
 
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+
+footer {
+    margin-top: auto; /* Skubber footeren til bunden */
+    background-color: #f8f9fa; /* Valgfrit: Ændrer baggrundsfarven */
+    padding: 1rem; /* Tilføj polstring */
+    text-align: center; /* Centerer indholdet i footeren */
+}
