@@ -7,6 +7,6 @@ namespace HilleroedSejlKlubLibrary.Data
 {
     public enum FuelType
     {
-        BENZIN, EL, DIESEL
+        Benzin, El, Diesel
     }
 }
