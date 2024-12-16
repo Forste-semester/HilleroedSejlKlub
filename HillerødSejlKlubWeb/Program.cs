@@ -12,6 +12,9 @@ builder.Services.AddSingleton<BlogRepository>();
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<BoatRepository>();
 builder.Services.AddSingleton<EventRepository>();
+builder.Services.AddSingleton<BlogRepository>();
+
+
 
 builder.Logging.ClearProviders(); // Optional: clears default providers
 builder.Logging.AddConsole();    // Logs to the console

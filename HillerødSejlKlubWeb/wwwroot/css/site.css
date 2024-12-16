@@ -118,8 +118,18 @@ footer {
     background-color: #f8f9fa; /* Valgfrit: �ndrer baggrundsfarven */
     padding: 1rem; /* Tilf�j polstring */
     text-align: center; /* Centerer indholdet i footeren */
+}
 
 .centered-message {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
     position: fixed; /* Fixed positioning to keep it in the same spot even when the user scrolls */
     top: 50%; /* Position vertically in the middle of the viewport */
     left: 50%; /* Position horizontally in the middle of the viewport */
@@ -129,5 +139,23 @@ footer {
     max-width: 500px; /* Optional: Limit the maximum width */
     padding: 20px;
     text-align: center;
+    transition: opacity 5s ease-in-out;
+}
 
+
+
+@keyframes cssAnimation {
+    to {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    to {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
 }

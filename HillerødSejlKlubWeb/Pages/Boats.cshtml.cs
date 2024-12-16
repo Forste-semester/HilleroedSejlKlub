@@ -102,6 +102,8 @@ namespace HillerødSejlKlubWeb.Pages
                 ModelState.AddModelError(string.Empty, "Boat not found.");
             }
 
+            TempData["SuccessMessage"] = "Boat removed successfully!";
+
             // Reload the event list after deletion
             return RedirectToPage();  // This refreshes the page
 
@@ -141,6 +143,7 @@ namespace HillerødSejlKlubWeb.Pages
 
 
             _boatRepository.AddBoat(newBoat);
+            TempData["SuccessMessage"] = "Boat added successfully!";
 
             return RedirectToPage("/Boats");
 

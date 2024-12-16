@@ -20,7 +20,7 @@ namespace HillerødSejlKlubWeb.Pages
         public void OnGet()
         {
             Bookings = _bookingRepository.GetAll();
-            _bookingRepository.LeaveDock(2);
+            //_bookingRepository.LeaveDock(2);
         }
 
         public void OnPost() 

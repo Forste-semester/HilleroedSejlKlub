@@ -18,15 +18,7 @@ namespace HillerødSejlKlub.Services
         private Dictionary<string, Blog> _blogs = new Dictionary<string, Blog>(BlogCollection.BlogsData);
         #endregion
 
-        /*
-            #region Constructor
-                public BlogRepository()
-                {
-                    _blogs = new Dictionary<string, Blog>(BlogCollection.BlogsData);
-
-                }
-                #endregion
-        */
+       
 
         public void CreateBlog(Blog blog)
         {
@@ -81,24 +73,7 @@ namespace HillerødSejlKlub.Services
 
             }
         }
-        /*
-            if (string.IsNullOrEmpty(title))
-            {
-                throw new ArgumentNullException(nameof(title), "This felt cannot be empty...");
-            }
-
-            if (_blogs.ContainsKey(title))
-            {
-                _blogs.Remove(title);
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Blog with this Id {title} is not found ");
-
-            }
-
-        }
-        */
+       
 
         public void UpdateBlogByTitle(string title, string newTitle, string newDescription, DateTime newDate)
         {
@@ -145,5 +120,7 @@ namespace HillerødSejlKlub.Services
             }
 
         }
+
+    
     }
 }
