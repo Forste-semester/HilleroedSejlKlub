@@ -1,0 +1,38 @@
+﻿@page
+@using HillerødSejlKlub.Data
+@model HillerødSejlKlubWeb.Pages.CreateMemberModel
+
+<h1>Opret nyt Medlem</h1>
+
+<form method="post">
+
+    <div class="form-group">
+        <label class="form-label" asp-for="Name">Name:</label>
+        <input asp-for="Name" type="text" class="form-control" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="form-label" asp-for="Email">Email:</label>
+        <input asp-for="Email" type="text" class="form-control" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="form-label" asp-for="Phone">Phone:</label>
+        <input asp-for="Phone" type="text" class="form-control" required />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="form-label" asp-for="TitleType">Vælg title:</label>
+        <select asp-for="TitleType" class="form-control" required>
+            <option value="">-- Vælg Title --</option>
+            @foreach (var title in Enum.GetValues(typeof(TitleType)))
+            {
+                <option value="@title">@title</option>
+            }
+        </select>
+        <span asp-validation-for="TitleType" class="text-danger"></span>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Opret Medlem</button>
+</form>

@@ -5,11 +5,11 @@ namespace HillerødSejlKlub.Services
 {
     public class UserRepository : IUserRepository
     {
-        private Dictionary<int, User> _users;
+        private static Dictionary<int, User> _users = new Dictionary<int, User>(UserCollection.UserData);
 
         public UserRepository()
         {
-            _users = new Dictionary<int, User>(UserCollection.UserData);
+
         }
 
         public void CreateUser(User user)

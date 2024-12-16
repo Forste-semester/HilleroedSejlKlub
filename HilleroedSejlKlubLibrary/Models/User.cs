@@ -22,8 +22,16 @@ namespace HillerødSejlKlub.Models
             Phone = phone;
             TitleType = titleType;
         }
+
+        public User()
+        {
+
+        }
+
+
         #endregion
         #region Properties
+
         public int Id { get; }
         public string Name { get; set; }
         public string Email { get; set; }
