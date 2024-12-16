@@ -1,0 +1,7 @@
+﻿@page "{id}"
+@model HillerødSejlKlubWeb.Pages.BlogDetailsModel
+
+<h1>@Model.Blog?.Title</h1>
+<p>@Model.Blog?.Description</p>
+
+<a href="@Url.Page("/Blog")" class="btn btn-secondary">Back to Blog List</a>

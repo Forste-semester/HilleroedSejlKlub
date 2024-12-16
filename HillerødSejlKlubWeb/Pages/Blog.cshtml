@@ -1,4 +1,34 @@
 ﻿@page
 @model HillerødSejlKlubWeb.Pages.BlogModel
-@{
+
+
+<div class="mb-5">
+    <a href="@Url.Page("/CreateBlog")" class="btn btn-lg btn-outline-secondary me-3" style="font-size: 1.13rem; padding: 4px 20px; border-width: 1px;">Create New Blog</a>
+    <a href="@Url.Page("/UpdateBlog")" class="btn btn-lg btn-outline-secondary me-3" style="font-size: 1.13rem; padding: 4px 20px; border-width: 1px;">Update Blog</a>
+    <a href="@Url.Page("/DeleteBlog")" class="btn btn-lg btn-outline-secondary" style="font-size: 1.13rem; padding: 4px 20px; border-width: 1px;">Delete Blog</a>
+</div>
+
+
+<h1>Club Blogs</h1>
+
+@if (Model.BlogList != null && Model.BlogList.Count > 0)
+{
+    <ul class="list-group">
+
+        @foreach (var blog in Model.BlogList)
+        {
+            <li class="list-group-item">
+                <a href="@Url.Page("/BlogDetails", new { id = blog.Id })">
+                    @blog.Title
+                </a>
+                <span class="text-muted">(@blog.Date)</span>
+            </li>
+        }
+        a
+    </ul>
+
+}
+else
+{
+    <p>No existing Blogs.</p>
 }

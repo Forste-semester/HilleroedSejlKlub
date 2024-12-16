@@ -1,0 +1,38 @@
+﻿@page
+@model HillerødSejlKlubWeb.Pages.UpdateBlogModel
+
+<h2>Update Blog</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post" asp-page-handler="UpdateBlogByTitile">
+    <div class="form-group">
+        <label for="currentTitle">Current Title</label>
+        <select id="currentTitle" name="Title" class="form-control" required>
+            <option value="" disabled selected>-- Select a Blog Title --</option>
+            @if (Model.BlogList != null && Model.BlogList.Any())
+            {
+                @foreach (var blog in Model.BlogList)
+                {
+                    <option value="@blog.Title">@blog.Title</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="newId">New Title</label>
+        <input type="text" id="newId" name="newId" class="form-control" placeholder="Enter new title" required />
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="newDescription">New Description</label>
+        <textarea id="newDescription" name="newDescription" class="form-control" placeholder="Enter new description" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4">Update Blog</button>
+</form>
+<a href="@Url.Page("/Blog")" class="btn btn-secondary mt-3">Back to Blog List</a>
