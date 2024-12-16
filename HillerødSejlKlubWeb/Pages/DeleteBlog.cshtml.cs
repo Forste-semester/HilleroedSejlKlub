@@ -37,7 +37,7 @@ namespace HillerødSejlKlubWeb.Pages
             BlogList = _blogRepository.GetAll();
         }
 
-        public IActionResult OnPostDeletBlog(string title)
+        public IActionResult OnPostDeleteBlogByTitle(string title)
         {
                 try
                 {

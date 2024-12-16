@@ -75,7 +75,7 @@ namespace HillerødSejlKlub.Services
             {
                 throw new ArgumentNullException(nameof(title), "Title cannot be empty.");
             }
-            if (!_blogs.Keys.Contains(title))
+            if (_blogs.Keys.Contains(title))
             {
                 _blogs.Remove(title);
 
@@ -102,6 +102,7 @@ namespace HillerødSejlKlub.Services
 
         public void UpdateBlogByTitle(string title, string newTitle, string newDescription, DateTime newDate)
         {
+            
             if (string.IsNullOrEmpty(title))
             {
                 throw new ArgumentNullException(nameof(title), "Title cannot be empty.");

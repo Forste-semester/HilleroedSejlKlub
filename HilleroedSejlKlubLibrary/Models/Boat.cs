@@ -29,7 +29,7 @@ namespace HillerødSejlKlub.Models
             ImagePath = "/images/billede-paa-vej.jpg"; // Provide a default value
         }
 
-        public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, string imagePath = "/images/billede-paa-vej.jpg", Engine engine = nul
+        public Boat(string name, string model, BoatType boatType, double size, int year, string sailNumber, string imagePath = "/images/billede-paa-vej.jpg", Engine engine = null)
 
         {
             Id = _nextId++;
