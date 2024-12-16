@@ -79,8 +79,6 @@ namespace HillerødSejlKlubWeb.Pages
 
         public void OnGet()
         {
-           
-
             foreach (var item in Boats)
             {
                 _logger.LogInformation($"Boat found: {item.Key}, {item.Value}");
