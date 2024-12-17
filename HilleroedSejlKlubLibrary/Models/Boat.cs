@@ -51,9 +51,9 @@ namespace HillerødSejlKlub.Models
 
         public string ImagePath { get; set; }
         public int Id { get; }
-        public string SailNumber { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Model { get; set; } = string.Empty;
+        public string SailNumber { get; set; }
+        public string Name { get; set; }
+        public string Model { get; set; }
         public BoatType BoatType { get; set; }
         public double Size { get; set; }
         public int Year { get; set; }

@@ -149,6 +149,7 @@ footer {
         width: 0;
         height: 0;
         overflow: hidden;
+        display: none;
     }
 }
 
@@ -157,5 +158,6 @@ footer {
         width: 0;
         height: 0;
         visibility: hidden;
+        display: none;
     }
 }

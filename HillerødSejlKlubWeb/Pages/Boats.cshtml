@@ -206,13 +206,13 @@
       <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
 
           
-<h3>Add new boat</h3>
+<h3>Tilføj ny båd</h3>
 
 
 <form method="post">
     <!-- Boat Name -->
     <div class="form-group">
-        <label asp-for="BoatName" class="control-label">Name</label>
+        <label asp-for="BoatName" class="control-label">Navn på båden</label>
         <input asp-for="BoatName" class="form-control" required />
         <span asp-validation-for="BoatName" class="text-danger"></span>
     </div>
@@ -226,7 +226,7 @@
 
    <!-- Boat Type -->
 <div class="form-group">
-    <label for="BoatType" class="control-label">Boat Type</label>
+    <label for="BoatType" class="control-label">Båd type</label>
     <select asp-for="BoatType" class="form-control" required>
         <option value="0">-- Select Boat Type --</option>
         @foreach (var boatType in Enum.GetValues(typeof(BoatType)))
@@ -239,36 +239,36 @@
 
     <!-- Size -->
     <div class="form-group">
-        <label asp-for="Size" class="control-label">Size (in meters)</label>
+        <label asp-for="Size" class="control-label">Størrelse (meter fra spids til bagbord)</label>
         <input asp-for="Size" class="form-control" type="number" step="0.1" required />
         <span asp-validation-for="Size" class="text-danger"></span>
     </div>
 
     <!-- Year -->
     <div class="form-group">
-        <label asp-for="Year" class="control-label">Year</label>
+        <label asp-for="Year" class="control-label">Fra årstal</label>
         <input asp-for="Year" class="form-control" type="number" min="1900" max="2100" required />
         <span asp-validation-for="Year" class="text-danger"></span>
     </div>
 
     <!-- Sail Number -->
     <div class="form-group">
-        <label asp-for="SailNumber" class="control-label">Sail Number</label>
+        <label asp-for="SailNumber" class="control-label">Sejlnummer</label>
         <input asp-for="SailNumber" class="form-control" required />
         <span asp-validation-for="SailNumber" class="text-danger"></span>
     </div>
         <!-- Engine Fields (Optional) -->
-    <h3>Engine Details (Optional)</h3>
+    <h3 class="pt-3">Indsæt eventuel motor</h3>
     <div class="form-group">
-        <label asp-for="EngineName" class="control-label">Engine Name</label>
+        <label asp-for="EngineName" class="control-label">Motor navn</label>
         <input asp-for="EngineName" class="form-control" />
         <span asp-validation-for="EngineName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="FuelType" class="control-label">Fuel Type</label>
+        <label for="FuelType" class="control-label">Brændstof type</label>
         <select asp-for="FuelType" class="form-control" required>
-            <option value="None" selected>@("No Engine")</option> <!-- Default to No Engine -->
+            
             @foreach (FuelType fuelType in Enum.GetValues(typeof(FuelType)))
             {
                 <option value="@fuelType">@fuelType</option>
@@ -286,11 +286,11 @@
         <div class="card-body">
                 <div class="form-group">
                     <h3>Benzin</h3>
-                    <label for="TankCapacity" class="control-label">Tank Capacity (L)</label>
+                    <label for="TankCapacity" class="control-label">Tank kapacitet (L)</label>
                         <input type="number" asp-for="TankCapacity" class="form-control" />
                 </div>
                     <div class="form-group">
-                        <label for="CylinderCount" class="control-label">Number of Cylinders</label>
+                        <label for="CylinderCount" class="control-label">Antal cylindere</label>
                         <input type="number" asp-for="Cylinders" class="form-control" />
                     </div>
                 </div>
@@ -304,7 +304,7 @@
         <div class="card-body">
                 <div class="form-group">
                     <h3>Diesel</h3>
-                    <label for="DieselCapacity" class="control-label">Diesel Capacity (L)</label>
+                    <label for="DieselCapacity" class="control-label">Diesel kapacitet (L)</label>
                     <input type="number" asp-for="TankCapacity" class="form-control" />
                 </div>
                     </div>
@@ -316,7 +316,7 @@
         <div class="card-body">
             <div class="form-group">
                 <h3>Elmotor</h3>
-                <label for="BatteryPower" class="control-label">Battery Power (kWh)</label>
+                <label for="BatteryPower" class="control-label">Batteri (kWh)</label>
                 <input type="number" asp-for="BatteryCapacity" class="form-control" />
             </div>
       </div>
@@ -324,7 +324,7 @@
     </div>
 
     </div>
-    <button type="submit" class="btn btn-primary">Create Boat</button>
+    <button type="submit" class="btn btn-primary mt-3">Create Boat</button>
 
     </form>
 
@@ -342,7 +342,7 @@
     <ul>
         @foreach (var boatItem in Model.Boats)
         {
-            <li>
+            <li class="pt-3">
                 ID: @boatItem.Value.Id<br />
                 <strong>@boatItem.Value.Name</strong><br />
                 @boatItem.Value.Model <br />
@@ -350,7 +350,7 @@
                 Årstal: @boatItem.Value.Year <br />
                
                 <form method="post" asp-page-handler="DeleteBoat" asp-route-id="@boatItem.Value.Id">
-                    <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                    <button type="submit" class="btn btn-danger mt-2">Fjern båd</button>
                 </form>
             </li>
         }

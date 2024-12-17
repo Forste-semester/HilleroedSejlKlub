@@ -15,7 +15,6 @@ namespace HillerødSejlKlubWeb.Pages
     {
         private readonly BoatRepository _boatRepository;
 
-
         private readonly ILogger<IndexModel> _logger;
 
 
@@ -64,8 +63,6 @@ namespace HillerødSejlKlubWeb.Pages
        
         public BoatsModel(BoatRepository boatRepository, ILogger<IndexModel> logger)
         {
-
-            
             _boatRepository = boatRepository;
             _logger = logger;
             _logger.LogInformation("This is an info log.");
@@ -124,11 +121,14 @@ namespace HillerødSejlKlubWeb.Pages
                 case FuelType.Diesel:
                     Engine = new DieselEngine(EngineName, TankCapacity, FuelType);
                     break;
+                case FuelType.Ingen:
+                    Engine = null;
+                    break;
 
 
             }
 
-       
+
             var newBoat = new Boat
             {
                 Name = BoatName,
