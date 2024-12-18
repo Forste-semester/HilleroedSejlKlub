@@ -13,6 +13,7 @@ namespace HillerødSejlKlub.Models
         #region Instance Fields
         private static int _nextId = 1;
         #endregion
+
         #region Constructor
         public User(string name, string email, string phone, TitleType titleType)
         {
@@ -39,24 +40,11 @@ namespace HillerødSejlKlub.Models
         public TitleType TitleType { get; set; }
 
         #endregion
+
         #region Methods
         public override string ToString()
         {
-
-            if (TitleType == TitleType.Board_Director)
-            {
-                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Director\nID: {Id}";
-            }
-
-
-            if (TitleType == TitleType.Board_Member)
-            {
-                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: Board Member\nID: {Id}";
-            }
-            else
-            {
-                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType}\nID: {Id}";
-            }
+                return $"Name: {Name}\nEmail: {Email}\nPhone: {Phone}\nTitle: {TitleType.ToString().Replace("_", " ")}\nID: {Id}";
         }
         #endregion
     }

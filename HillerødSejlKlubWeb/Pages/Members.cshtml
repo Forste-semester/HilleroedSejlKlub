@@ -11,8 +11,6 @@
     th {
         padding: 0px 20px;
     }
-</style>
-<style>
     td {
         padding: 0px 20px;
     }
@@ -37,7 +35,7 @@
                 <td>@user.Name</td>
                 <td>@user.Email</td>
                 <td>@user.Phone</td>
-                <td>@user.TitleType</td>
+                <td>@user.TitleType.ToString().Replace("_", " ")</td>
             </tr>
         }
     </tbody>
