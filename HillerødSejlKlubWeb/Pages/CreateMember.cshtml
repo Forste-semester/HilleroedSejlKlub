@@ -27,7 +27,7 @@
             <option value="">-- Vælg Title --</option>
             @foreach (var title in Enum.GetValues(typeof(TitleType)))
             {
-                <option value="@title">@title</option>
+                <option value="@title.ToString().Replace("_", " ")">@title.ToString().Replace("_", " ")</option>
             }
         </select>
         <span asp-validation-for="TitleType" class="text-danger"></span>

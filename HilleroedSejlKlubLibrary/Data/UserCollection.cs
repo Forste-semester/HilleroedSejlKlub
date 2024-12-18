@@ -19,6 +19,7 @@ namespace HillerødSejlKlub.Data
             {5, new User("Hanne", "Hanne24@gmail.com", "45454545", TitleType.Secretary) }
         };
         #endregion
+
         #region Properties
         public static Dictionary<int, User> UserData
         {
