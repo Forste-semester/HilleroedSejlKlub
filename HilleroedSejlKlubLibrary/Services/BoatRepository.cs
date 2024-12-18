@@ -142,10 +142,6 @@ namespace HillerødSejlKlub.Services
             boat.Model = newModel;
             boat.BoatType = newBoatType;
             boat.Size = newSize;
-
-
-            string message = $"{boat} got updated info.\n";
-            BoatMaintenanceLog.Save(message);
         }
 
 
