@@ -152,6 +152,7 @@ namespace HillerødSejlKlub.Services
 
         public void AddMaintenanceToBoat(int boatId, Maintenance maintenance)
         {
+
             Boat boat = GetBoatByID(boatId);
 
             if (boat != null)
